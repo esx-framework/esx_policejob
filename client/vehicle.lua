@@ -263,6 +263,15 @@ function OpenShopMenu(elements, restoreCoords, shopCoords)
 							end
 						end, props, element.type)
 					end
+				end, function()
+					isInShopMenu = false
+					ESX.CloseContext()
+
+					DeleteSpawnedVehicles()
+					FreezeEntityPosition(playerPed, false)
+					SetEntityVisible(playerPed, true)
+
+					ESX.Game.Teleport(playerPed, restoreCoords)
 				end)
 			end
 		end)

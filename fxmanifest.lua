@@ -4,7 +4,7 @@ game 'gta5'
 
 description 'ESX Police Job'
 lua54 'yes'
-version '1.0'
+version '1.0.1'
 legacyversion '1.9.1'
 
 shared_script '@es_extended/imports.lua'

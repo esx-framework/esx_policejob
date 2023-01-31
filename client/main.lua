@@ -449,8 +449,10 @@ end
 
 function OpenBodySearchMenu(player)
 	if Config.OxInventory then
+		ESX.CloseContext()
+		ESX.CloseContext()
 		exports.ox_inventory:openInventory('player', GetPlayerServerId(player))
-		return ESX.CloseContext()
+		return
 	end
 
 	ESX.TriggerServerCallback('esx_policejob:getOtherPlayerData', function(data)

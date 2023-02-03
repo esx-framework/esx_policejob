@@ -450,7 +450,6 @@ end
 function OpenBodySearchMenu(player)
 	if Config.OxInventory then
 		ESX.CloseContext()
-		ESX.CloseContext()
 		exports.ox_inventory:openInventory('player', GetPlayerServerId(player))
 		return
 	end

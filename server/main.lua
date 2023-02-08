@@ -472,7 +472,7 @@ AddEventHandler('esx_policejob:handcuffAnim', function(target)
 	local cufferState = Player(cufferId).state
 	local cuffedState = Player(cuffedId).state
 
-	if #(cufferCoords - cuffedCoords) > 3.0 or cufferState.handcuffAnim or cuffedState.handcuffAnim then return end
+	if #(cufferCoords - cuffedCoords) > 3.0 or cufferState.handcuffAnim or cuffedState.handcuffAnim or cufferId == cuffedId then return end
 
 	if cuffedState.handcuffed then
 		TriggerClientEvent('esx_policejob:handcuffAnim:getUncuffed', cuffedId, cufferId)

@@ -2,6 +2,8 @@ local CurrentActionData, handcuffTimer, dragStatus, blipsCops, currentTask = {},
 local HasAlreadyEnteredMarker, isDead, isHandcuffed, hasAlreadyJoined, playerInService = false, false, false, false, false
 local LastStation, LastPart, LastPartNum, LastEntity, CurrentAction, CurrentActionMsg
 dragStatus.isDragged, isInShopMenu = false, false
+LocalPlayer.state:set("handcuffed", isHandcuffed, true)
+LocalPlayer.state:set("handcuffAnim", false, true)
 
 RegisterNetEvent('esx:playerLoaded')
 AddEventHandler('esx:playerLoaded', function(xPlayer)
@@ -292,7 +294,7 @@ function OpenPoliceActionsMenu()
 					elseif action == 'search' then
 						OpenBodySearchMenu(closestPlayer)
 					elseif action == 'handcuff' then
-						TriggerServerEvent('esx_policejob:handcuff', GetPlayerServerId(closestPlayer))
+						TriggerServerEvent('esx_policejob:handcuffAnim', GetPlayerServerId(closestPlayer))
 					elseif action == 'drag' then
 						TriggerServerEvent('esx_policejob:drag', GetPlayerServerId(closestPlayer))
 					elseif action == 'put_in_vehicle' then
@@ -1004,6 +1006,7 @@ end)
 RegisterNetEvent('esx_policejob:handcuff')
 AddEventHandler('esx_policejob:handcuff', function()
 	isHandcuffed = not isHandcuffed
+	LocalPlayer.state:set("handcuffed", isHandcuffed, true)
 	local playerPed = PlayerPedId()
 
 	if isHandcuffed then
@@ -1019,8 +1022,11 @@ AddEventHandler('esx_policejob:handcuff', function()
 		DisablePlayerFiring(playerPed, true)
 		SetCurrentPedWeapon(playerPed, `WEAPON_UNARMED`, true) -- unarm player
 		SetPedCanPlayGestureAnims(playerPed, false)
-		FreezeEntityPosition(playerPed, true)
 		DisplayRadar(false)
+
+		if Config.HandcuffDisableMovement then
+			FreezeEntityPosition(playerPed, true)
+		end
 
 		if Config.EnableHandcuffTimer then
 			if handcuffTimer.active then
@@ -1038,8 +1044,11 @@ AddEventHandler('esx_policejob:handcuff', function()
 		SetEnableHandcuffs(playerPed, false)
 		DisablePlayerFiring(playerPed, false)
 		SetPedCanPlayGestureAnims(playerPed, true)
-		FreezeEntityPosition(playerPed, false)
 		DisplayRadar(true)
+
+		if Config.HandcuffDisableMovement then
+			FreezeEntityPosition(playerPed, false)
+		end
 	end
 end)
 
@@ -1048,6 +1057,7 @@ AddEventHandler('esx_policejob:unrestrain', function()
 	if isHandcuffed then
 		local playerPed = PlayerPedId()
 		isHandcuffed = false
+		LocalPlayer.state:set("handcuffed", isHandcuffed, true)
 
 		ClearPedSecondaryTask(playerPed)
 		SetEnableHandcuffs(playerPed, false)
@@ -1145,18 +1155,25 @@ CreateThread(function()
 
 		if isHandcuffed then
 			Sleep = 0
-			DisableControlAction(0, 1, true) -- Disable pan
-			DisableControlAction(0, 2, true) -- Disable tilt
+
+			if Config.HandcuffDisableLook then
+				DisableControlAction(0, 1, true) -- Disable pan
+				DisableControlAction(0, 2, true) -- Disable tilt
+			end
+			if Config.HandcuffDisableMovement then
+				DisableControlAction(0, 32, true) -- W
+				DisableControlAction(0, 34, true) -- A
+				DisableControlAction(0, 31, true) -- S
+				DisableControlAction(0, 30, true) -- D
+			end
+
 			DisableControlAction(0, 24, true) -- Attack
 			DisableControlAction(0, 257, true) -- Attack 2
 			DisableControlAction(0, 25, true) -- Aim
 			DisableControlAction(0, 263, true) -- Melee Attack 1
-			DisableControlAction(0, 32, true) -- W
-			DisableControlAction(0, 34, true) -- A
-			DisableControlAction(0, 31, true) -- S
-			DisableControlAction(0, 30, true) -- D
 
 			DisableControlAction(0, 45, true) -- Reload
+			DisableControlAction(0, 21, true) -- Sprint
 			DisableControlAction(0, 22, true) -- Jump
 			DisableControlAction(0, 44, true) -- Cover
 			DisableControlAction(0, 37, true) -- Select Weapon
@@ -1564,3 +1581,76 @@ if ESX.PlayerLoaded and ESX.PlayerData.job == 'police' then
 		TriggerServerEvent('esx_policejob:forceBlip')
 	end)
 end
+
+
+--- Handcuff Animations
+--- Credits: GaluzaCZ
+
+-- Uncuff
+RegisterNetEvent('esx_policejob:handcuffAnim:getUncuffed')
+AddEventHandler('esx_policejob:handcuffAnim:getUncuffed', function(cufferId)
+	LocalPlayer.state:set("handcuffAnim", true, true)
+	local cufferPed = GetPlayerPed(GetPlayerFromServerId(cufferId))
+
+	ESX.Streaming.RequestAnimDict('mp_arresting', function()
+		AttachEntityToEntity(ESX.PlayerData.ped, cufferPed, 11816, 0.0, 0.60, 0.0, 0.0, 0.0, 0.0, false, false, false, false, 0, false)
+
+		ClearPedTasksImmediately(ESX.PlayerData.ped)
+		TaskPlayAnim(ESX.PlayerData.ped, 'mp_arresting', 'b_uncuff', 8.0, 8.0,5500, 2, 0, 0, 0, 0)
+		RemoveAnimDict('mp_arresting')
+		Citizen.Wait(5500)
+
+		DetachEntity(ESX.PlayerData.ped, true, false)
+
+		LocalPlayer.state:set("handcuffAnim", false, true)
+	end)
+end)
+
+RegisterNetEvent('esx_policejob:handcuffAnim:doUncuffing')
+AddEventHandler('esx_policejob:handcuffAnim:doUncuffing', function()
+	LocalPlayer.state:set("handcuffAnim", true, true)
+
+	ESX.Streaming.RequestAnimDict('mp_arresting', function()
+		ClearPedTasksImmediately(ESX.PlayerData.ped)
+		TaskPlayAnim(ESX.PlayerData.ped, 'mp_arresting', 'a_uncuff', 8.0, 8.0,5500, 2, 0, 0, 0, 0)
+		RemoveAnimDict('mp_arresting')
+		Citizen.Wait(5500)
+
+		LocalPlayer.state:set("handcuffAnim", false, true)
+	end)
+end)
+
+
+-- Cuff
+RegisterNetEvent('esx_policejob:handcuffAnim:getCuffed')
+AddEventHandler('esx_policejob:handcuffAnim:getCuffed', function(cufferId)
+	LocalPlayer.state:set("handcuffAnim", true, true)
+	local cufferPed = GetPlayerPed(GetPlayerFromServerId(cufferId))
+
+	ESX.Streaming.RequestAnimDict('mp_arrest_paired', function()
+		AttachEntityToEntity(ESX.PlayerData.ped, cufferPed, 11816, 0.0, 0.65, 0.0, 0.0, 0.0, 0.0, false, false, false, false, 0, false)
+
+		ClearPedTasksImmediately(ESX.PlayerData.ped)
+		TaskPlayAnim(ESX.PlayerData.ped, 'mp_arrest_paired', 'crook_p2_back_left', 8.0, -8.0, 5500, 33, 0, false, false, false)
+		RemoveAnimDict('mp_arrest_paired')
+		Citizen.Wait(5500)
+
+		DetachEntity(ESX.PlayerData.ped, true, false)
+
+		LocalPlayer.state:set("handcuffAnim", false, true)
+	end)
+end)
+
+RegisterNetEvent('esx_policejob:handcuffAnim:doCuffing')
+AddEventHandler('esx_policejob:handcuffAnim:doCuffing', function()
+	LocalPlayer.state:set("handcuffAnim", true, true)
+
+	ESX.Streaming.RequestAnimDict('mp_arrest_paired', function()
+		ClearPedTasksImmediately(ESX.PlayerData.ped)
+		TaskPlayAnim(ESX.PlayerData.ped, 'mp_arrest_paired', 'cop_p2_back_left', 8.0, -8.0, 5500, 33, 0, false, false, false)
+		RemoveAnimDict('mp_arrest_paired')
+		Citizen.Wait(5500)
+
+		LocalPlayer.state:set("handcuffAnim", false, true)
+	end)
+end)

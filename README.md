@@ -1,6 +1,6 @@
 <h1 align='center'>[ESX] Police job</a></h1><p align='center'><b><a href='https://discord.esx-framework.org/'>Discord</a> - <a href='https://documentation.esx-framework.org/legacy/installation'>Documentation</a></b></h5>
 
-This resource for ESX adds police armories, vehicle garages and ability for cops to search, handcuff people and much more.
+This resource for ESX adds police armories, vehicle garages and ability for cops to search, handcuff and much more.
 
 ### Requirements
 * Auto mode
@@ -54,6 +54,21 @@ start esx_policejob
    * If you want armory management you have to set `Config.EnableArmoryManagement` to `true` in `config.lua`
    * If you want license management you have to set `Config.EnableLicenses` to `true` in `config.lua`
    * If you want service management you have to set `Config.MaxInService` to a higher value than `-1` in `config.lua`
+
+## Handcuff
+Now you can get player handcuff state by using State Bags
+
+Client:
+```lua
+local isHandcuffed = LocalPlayer.state.handcuffed
+print(isHandcuffed)
+```
+Server:
+```lua
+local isHandcuffed = Player(source).state.handcuffed
+print(isHandcuffed)
+```
+You can use [AddStateBagChangeHandler](https://docs.fivem.net/natives/?_0x5BA35AAF) function to handle changes
 
 # Legal
 ### License

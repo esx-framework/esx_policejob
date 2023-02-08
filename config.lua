@@ -13,6 +13,8 @@ Config.EnableLicenses             = false -- Enable if you're using esx_license.
 
 Config.EnableHandcuffTimer        = true -- Enable handcuff timer? will unrestrain player after the time ends.
 Config.HandcuffTimer              = 10 * 60000 -- 10 minutes.
+Config.HandcuffDisableLook        = false -- If can player look around when is handcuffed
+Config.HandcuffDisableMovement    = false -- If can player walk around when is handcuffed
 
 Config.EnableJobBlip              = false -- Enable blips for cops on duty, requires esx_society.
 Config.EnableCustomPeds           = false -- Enable custom peds in cloak room? See Config.CustomPeds below to customize peds.

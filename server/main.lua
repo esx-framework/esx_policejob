@@ -462,3 +462,27 @@ AddEventHandler('onResourceStop', function(resource)
 		TriggerEvent('esx_phone:removeNumber', 'police')
 	end
 end)
+
+RegisterNetEvent('esx_policejob:handcuffAnim')
+AddEventHandler('esx_policejob:handcuffAnim', function(target)
+	local cufferId = source
+	local cuffedId = target
+	local cufferCoords = GetEntityCoords(GetPlayerPed(cufferId))
+	local cuffedCoords = GetEntityCoords(GetPlayerPed(cuffedId))
+	local cufferState = Player(cufferId).state
+	local cuffedState = Player(cuffedId).state
+
+	if #(cufferCoords - cuffedCoords) > 3.0 or cufferState.handcuffAnim or cuffedState.handcuffAnim then return end
+
+	if cuffedState.handcuffed then
+		TriggerClientEvent('esx_policejob:handcuffAnim:getUncuffed', cuffedId, cufferId)
+		TriggerClientEvent('esx_policejob:handcuffAnim:doUncuffing', cufferId)
+		Wait(5500)
+		TriggerClientEvent('esx_policejob:handcuff', cuffedId)
+	else
+		TriggerClientEvent('esx_policejob:handcuffAnim:getCuffed', cuffedId, cufferId)
+		TriggerClientEvent('esx_policejob:handcuffAnim:doCuffing', cufferId)
+		Wait(5500)
+		TriggerClientEvent('esx_policejob:handcuff', cuffedId)
+	end
+end)

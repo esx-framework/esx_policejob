@@ -1,6 +1,6 @@
 <h1 align='center'>[ESX] Police job</a></h1><p align='center'><b><a href='https://discord.esx-framework.org/'>Discord</a> - <a href='https://documentation.esx-framework.org/legacy/installation'>Documentation</a></b></h5>
 
-This resource for ESX adds police armories, vehicle garages and ability for cops to search, handcuff and much more.
+This resource for ESX adds police armories, vehicle garages and ability for cops to search, handcuff with animation and much more.
 
 ### Requirements
 * Auto mode

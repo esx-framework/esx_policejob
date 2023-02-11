@@ -736,7 +736,7 @@ CreateThread(function()
 
 			if DoesEntityExist(targetPed) and IsPedOnFoot(targetPed) and not IsPedDeadOrDying(targetPed, true) then
 				if not wasDragged then
-					AttachEntityToEntity(ESX.PlayerData.ped, targetPed, 11816, 0.54, 0.54, 0.0, 0.0, 0.0, 0.0, false, false, false, false, 2, true)
+					AttachEntityToEntity(ESX.PlayerData.ped, targetPed, 11816, 0.30, 0.30, 0.0, 0.0, 0.0, 0.0, false, false, true, false, 2, true)
 					wasDragged = true
 				else
 					Wait(1000)
@@ -761,18 +761,12 @@ AddEventHandler('esx_policejob:putInVehicle', function()
 		local vehicle, distance = ESX.Game.GetClosestVehicle()
 
 		if vehicle and distance < 5 then
-			local maxSeats, freeSeat = GetVehicleMaxNumberOfPassengers(vehicle)
-
-			for i=maxSeats - 1, 0, -1 do
+			for i=1, GetVehicleMaxNumberOfPassengers(vehicle) - 1, 1 do
 				if IsVehicleSeatFree(vehicle, i) then
-					freeSeat = i
+					TaskWarpPedIntoVehicle(playerPed, vehicle, i)
+					dragStatus.isDragged = false
 					break
 				end
-			end
-
-			if freeSeat then
-				TaskWarpPedIntoVehicle(playerPed, vehicle, freeSeat)
-				dragStatus.isDragged = false
 			end
 		end
 	end

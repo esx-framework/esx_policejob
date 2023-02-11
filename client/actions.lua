@@ -256,6 +256,19 @@ function ImpoundVehicle(vehicle)
 	currentTask.busy = false
 end
 
+function TakePlayerFromVehicle(vehicle)
+	for i = GetVehicleMaxNumberOfPassengers(vehicle) - 1, 1, -1 do
+		if not IsVehicleSeatFree(vehicle, i) then
+			local targetPed = GetPedInVehicleSeat(vehicle, i)
+			local target = NetworkGetPlayerIndexFromPed(targetPed)
+			if target ~= -1 then
+				TriggerServerEvent("esx_policejob:OutVehicle", GetPlayerServerId(target))
+				break
+			end
+		end
+	end
+end
+
 function LookupVehicle()
 	local elements = {
 		{unselectable = true, icon = "fas fa-car", title = TranslateCap('search_database')},
@@ -299,7 +312,10 @@ local Actions = {
         {
             value = 'search',
             title = TranslateCap('search'),
-            func = OpenBodySearchMenu
+            func = OpenBodySearchMenu,
+			canInteract = function(entity)
+				return Player(GetPlayerServerId(NetworkGetPlayerIndexFromPed(entity))).state.handcuffed
+			end
         },
         {
             value = 'handcuff',
@@ -309,17 +325,24 @@ local Actions = {
         {
             value = 'drag',
             title = TranslateCap('drag'),
-            event = 'esx_policejob:drag'
+            event = 'esx_policejob:drag',
+			canInteract = function(entity)
+				return Player(GetPlayerServerId(NetworkGetPlayerIndexFromPed(entity))).state.handcuffed
+			end
         },
         {
             value = 'put_in_vehicle',
             title = TranslateCap('put_in_vehicle'),
-            event = 'esx_policejob:putInVehicle'
+            event = 'esx_policejob:putInVehicle',
+			canInteract = function(entity)
+				return Player(GetPlayerServerId(NetworkGetPlayerIndexFromPed(entity))).state.handcuffed
+			end
         },
         {
             value = 'out_the_vehicle',
             title = TranslateCap('out_the_vehicle'),
-            event = 'esx_policejob:OutVehicle'
+            event = 'esx_policejob:OutVehicle',
+			disableTarget = true
         },
         {
             value = 'fine',
@@ -347,6 +370,20 @@ local Actions = {
 			value = 'impound',
             title = TranslateCap('impound'),
             func = ImpoundNearVehicle
+		},
+		{
+			value = 'vehicle_player_out',
+			title = TranslateCap('out_the_vehicle'),
+			func = TakePlayerFromVehicle,
+			disableMenu = true,
+			canInteract = function(entity)
+				for i = GetVehicleMaxNumberOfPassengers(entity) - 1, 1, -1 do
+					if not IsVehicleSeatFree(entity, i) then
+						return true
+					end
+				end
+				return false
+			end
 		},
 	},
 	object_spawner = {
@@ -385,7 +422,9 @@ function OpenPoliceActionsMenu()
 
             for i = 1, #Actions.citizen_interaction do
                 local action = Actions.citizen_interaction[i]
-                elements2[#elements2+1] = {icon = 'fas fa-eye', title = action.title, i = i}
+				if not action.disableMenu then
+					elements2[#elements2+1] = {icon = 'fas fa-eye', title = action.title, i = i}
+				end
             end
 
 			ESX.OpenContext("right", elements2, function(menu2, element2)
@@ -407,7 +446,9 @@ function OpenPoliceActionsMenu()
 			if DoesEntityExist(vehicle) then
 				for i = 1, #Actions.vehicle_interaction do
 					local action = Actions.vehicle_interaction[i]
-					elements2[#elements2+1] = {icon = 'fas fa-car', title = action.title, action = action}
+					if not action.disableMenu then
+						elements2[#elements2+1] = {icon = 'fas fa-car', title = action.title, action = action}
+					end
 				end
 			end
 
@@ -474,17 +515,20 @@ if Config.EnableTarget and (GetResourceState('ox_target') == 'started') then
 
 	for i = 1, #Actions.citizen_interaction do
 		local action = Actions.citizen_interaction[i]
-		options[#options+1] = {
-			label = action.title,
-			icon = 'fas fa-eye',
-			distance = 3.0,
-			groups = 'police',
-			onSelect = function(data)
-				local player = NetworkGetPlayerIndexFromPed(data.entity)
-				if action.func then action.func(player) end
-                if action.event then TriggerServerEvent(action.event, GetPlayerServerId(player)) end
-			end
-		}
+		if not action.disableTarget then
+			options[#options+1] = {
+				label = action.title,
+				icon = action.icon or 'fas fa-eye',
+				distance = 3.0,
+				groups = 'police',
+				canInteract = action.canInteract,
+				onSelect = function(data)
+					local player = NetworkGetPlayerIndexFromPed(data.entity)
+					if action.func then action.func(player) end
+        	        if action.event then TriggerServerEvent(action.event, GetPlayerServerId(player)) end
+				end
+			}
+		end
 	end
 
 	exports.ox_target:addGlobalPlayer(options)
@@ -493,16 +537,19 @@ if Config.EnableTarget and (GetResourceState('ox_target') == 'started') then
 
 	for i = 1, #Actions.vehicle_interaction do
 		local action = Actions.vehicle_interaction[i]
-		options2[#options2+1] = {
-			label = action.title,
-			icon = 'fas fa-car',
-			distance = 3.0,
-			groups = 'police',
-			onSelect = function(data)
-				if action.func then action.func(data.entity) end
-                if action.event then TriggerServerEvent(action.event, GetPlayerServerId(data.entity)) end
-			end
-		}
+		if not action.disableTarget then
+			options2[#options2+1] = {
+				label = action.title,
+				icon = action.icon or 'fas fa-car',
+				distance = 3.0,
+				groups = 'police',
+				canInteract = action.canInteract,
+				onSelect = function(data)
+					if action.func then action.func(data.entity) end
+					if action.event then TriggerServerEvent(action.event, GetPlayerServerId(data.entity)) end
+				end
+			}
+		end
 	end
 
 	exports.ox_target:addGlobalVehicle(options2)

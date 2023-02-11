@@ -97,7 +97,7 @@ AddEventHandler('esx_policejob:putInVehicle', function(target)
 	if xPlayer.job.name == 'police' then
 		TriggerClientEvent('esx_policejob:putInVehicle', target)
 	else
-		print(('[^3WARNING^7] Player ^5%s^7 Attempted To Exploit Garage!'):format(xPlayer.source))
+		print(('[^3WARNING^7] Player ^5%s^7 Attempted To Exploit Putting in Vehicle!'):format(xPlayer.source))
 	end
 end)
 

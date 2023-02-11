@@ -5,18 +5,6 @@ dragStatus.isDragged, isInShopMenu = false, false
 LocalPlayer.state:set("handcuffed", isHandcuffed, true)
 LocalPlayer.state:set("handcuffAnim", false, true)
 
-RegisterNetEvent('esx:playerLoaded')
-AddEventHandler('esx:playerLoaded', function(xPlayer)
-	ESX.PlayerData = xPlayer
-	ESX.PlayerLoaded = true
-end)
-
-RegisterNetEvent('esx:onPlayerLogout')
-AddEventHandler('esx:onPlayerLogout', function()
-	ESX.PlayerLoaded = false
-	ESX.PlayerData = {}
-end)
-
 function cleanPlayer(playerPed)
 	SetPedArmour(playerPed, 0)
 	ClearPedBloodDamage(playerPed)
@@ -248,57 +236,6 @@ function OpenArmoryMenu(station)
 		CurrentActionMsg  = TranslateCap('open_armory')
 		CurrentActionData = {station = station}
 	end)
-end
-
-function ShowPlayerLicense(player)
-	local elements = {
-		{unselectable = true, icon = "fas fa-scroll", title = TranslateCap('license_revoke')}
-	}
-
-	ESX.TriggerServerCallback('esx_policejob:getOtherPlayerData', function(playerData)
-		if playerData.licenses then
-			for i=1, #playerData.licenses, 1 do
-				if playerData.licenses[i].label and playerData.licenses[i].type then
-					elements[#elements+1] = {
-						icon = "fas fa-scroll",
-						title = playerData.licenses[i].label,
-						type = playerData.licenses[i].type
-					}
-				end
-			end
-		end
-
-		ESX.OpenContext("right", elements, function(menu,element)
-			local data = {current = element}
-			ESX.ShowNotification(TranslateCap('licence_you_revoked', data.current.label, playerData.name))
-			TriggerServerEvent('esx_policejob:message', GetPlayerServerId(player), TranslateCap('license_revoked', data.current.label))
-
-			TriggerServerEvent('esx_license:removeLicense', GetPlayerServerId(player), data.current.type)
-
-			ESX.SetTimeout(300, function()
-				ShowPlayerLicense(player)
-			end)
-		end)
-	end, GetPlayerServerId(player))
-end
-
-function OpenUnpaidBillsMenu(player)
-	local elements = {
-		{unselectable = true, icon = "fas fa-scroll", title = TranslateCap('unpaid_bills')}
-	}
-
-	ESX.TriggerServerCallback('esx_billing:getTargetBills', function(bills)
-		for k,bill in ipairs(bills) do
-			elements[#elements+1] = {
-				unselectable = true,
-				icon = "fas fa-scroll",
-				title = ('%s - <span style="color:red;">%s</span>'):format(bill.label, TranslateCap('armory_item', ESX.Math.GroupDigits(bill.amount))),
-				billId = bill.id
-			}
-		end
-
-		ESX.OpenContext("right", elements, nil, nil)
-	end, GetPlayerServerId(player))
 end
 
 function OpenGetWeaponMenu()
@@ -667,11 +604,11 @@ AddEventHandler('esx_policejob:handcuff', function()
 		SetPedCanPlayGestureAnims(playerPed, false)
 		DisplayRadar(false)
 
-		if Config.HandcuffDisableMovement then
+		if Config.Handcuff.DisableMovement then
 			FreezeEntityPosition(playerPed, true)
 		end
 
-		if Config.EnableHandcuffTimer then
+		if Config.Handcuff.Timer.Enable then
 			if handcuffTimer.active then
 				ESX.ClearTimeout(handcuffTimer.task)
 			end
@@ -679,7 +616,7 @@ AddEventHandler('esx_policejob:handcuff', function()
 			StartHandcuffTimer()
 		end
 	else
-		if Config.EnableHandcuffTimer and handcuffTimer.active then
+		if Config.Handcuff.Timer.Enable and handcuffTimer.active then
 			ESX.ClearTimeout(handcuffTimer.task)
 		end
 
@@ -689,7 +626,7 @@ AddEventHandler('esx_policejob:handcuff', function()
 		SetPedCanPlayGestureAnims(playerPed, true)
 		DisplayRadar(true)
 
-		if Config.HandcuffDisableMovement then
+		if Config.Handcuff.DisableMovement then
 			FreezeEntityPosition(playerPed, false)
 		end
 	end
@@ -710,7 +647,7 @@ AddEventHandler('esx_policejob:unrestrain', function()
 		DisplayRadar(true)
 
 		-- end timer
-		if Config.EnableHandcuffTimer and handcuffTimer.active then
+		if Config.Handcuff.Timer.Enable and handcuffTimer.active then
 			ESX.ClearTimeout(handcuffTimer.task)
 		end
 	end
@@ -793,11 +730,11 @@ CreateThread(function()
 		if isHandcuffed then
 			Sleep = 0
 
-			if Config.HandcuffDisableLook then
+			if Config.Handcuff.DisableLook then
 				DisableControlAction(0, 1, true) -- Disable pan
 				DisableControlAction(0, 2, true) -- Disable tilt
 			end
-			if Config.HandcuffDisableMovement then
+			if Config.Handcuff.DisableMovement then
 				DisableControlAction(0, 32, true) -- W
 				DisableControlAction(0, 34, true) -- A
 				DisableControlAction(0, 31, true) -- S
@@ -1168,7 +1105,7 @@ AddEventHandler('onResourceStop', function(resource)
 			TriggerServerEvent('esx_service:disableService', 'police')
 		end
 
-		if Config.EnableHandcuffTimer and handcuffTimer.active then
+		if Config.Handcuff.Timer.Enable and handcuffTimer.active then
 			ESX.ClearTimeout(handcuffTimer.task)
 		end
 	end
@@ -1176,13 +1113,13 @@ end)
 
 -- handcuff timer, unrestrain the player after an certain amount of time
 function StartHandcuffTimer()
-	if Config.EnableHandcuffTimer and handcuffTimer.active then
+	if Config.Handcuff.Timer.Enable and handcuffTimer.active then
 		ESX.ClearTimeout(handcuffTimer.task)
 	end
 
 	handcuffTimer.active = true
 
-	handcuffTimer.task = ESX.SetTimeout(Config.HandcuffTimer, function()
+	handcuffTimer.task = ESX.SetTimeout(Config.Handcuff.Timer.Time, function()
 		ESX.ShowNotification(TranslateCap('unrestrained_timer'))
 		TriggerEvent('esx_policejob:unrestrain')
 		handcuffTimer.active = false

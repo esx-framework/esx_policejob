@@ -22,14 +22,13 @@ function OpenIdentityCardMenu(player)
 			end
 		end
 
-		ESX.OpenContext("right", elements, nil, function(menu)
-			OpenPoliceActionsMenu()
-		end)
+		ESX.OpenContext("right", elements)
 	end, GetPlayerServerId(player))
 end
 
 function OpenBodySearchMenu(player)
 	if Config.OxInventory then
+		print("Loading")
 		ESX.CloseContext()
 		exports.ox_inventory:openInventory('player', GetPlayerServerId(player))
 		return
@@ -302,7 +301,18 @@ function LookupVehicle()
 	end)
 end
 
+---@class Interaction
+---@field title string
+---@field func function|nil
+---@field event string|nil
+---@field items string|nil
+---@field closeMenu boolean|nil
+---@field disableMenu boolean|nil
+---@field disableTarget boolean|nil
+---@field canInteract function|nil
+
 local Actions = {
+	---@type Interaction[]
     citizen_interaction = {
         {
             value = 'identity_card',
@@ -313,6 +323,7 @@ local Actions = {
             value = 'search',
             title = TranslateCap('search'),
             func = OpenBodySearchMenu,
+			closeMenu = true,
 			canInteract = function(entity)
 				return Player(GetPlayerServerId(NetworkGetPlayerIndexFromPed(entity))).state.handcuffed
 			end
@@ -320,12 +331,15 @@ local Actions = {
         {
             value = 'handcuff',
             title = TranslateCap('handcuff'),
-            event = 'esx_policejob:handcuffAnim'
+            event = 'esx_policejob:handcuffAnim',
+			closeMenu = true,
+			items = Config.Handcuff.Item.Required and Config.Handcuff.Item.Name or nil
         },
         {
             value = 'drag',
             title = TranslateCap('drag'),
             event = 'esx_policejob:drag',
+			closeMenu = true,
 			canInteract = function(entity)
 				return Player(GetPlayerServerId(NetworkGetPlayerIndexFromPed(entity))).state.handcuffed
 			end
@@ -334,6 +348,7 @@ local Actions = {
             value = 'put_in_vehicle',
             title = TranslateCap('put_in_vehicle'),
             event = 'esx_policejob:putInVehicle',
+			closeMenu = true,
 			canInteract = function(entity)
 				return Player(GetPlayerServerId(NetworkGetPlayerIndexFromPed(entity))).state.handcuffed
 			end
@@ -342,7 +357,10 @@ local Actions = {
             value = 'out_the_vehicle',
             title = TranslateCap('out_the_vehicle'),
             event = 'esx_policejob:OutVehicle',
-			disableTarget = true
+			disableTarget = true,
+			canInteract = function(entity)
+				return IsPedInAnyVehicle(entity, false)
+			end
         },
         {
             value = 'fine',
@@ -355,6 +373,7 @@ local Actions = {
             func = OpenUnpaidBillsMenu
         },
     },
+	---@type Interaction[]
 	vehicle_interaction = {
 		{
 			value = 'vehicle_infos',
@@ -403,6 +422,19 @@ if Config.EnableLicenses then
     }
 end
 
+function HasPlayerItem(item)
+	if Config.OxInventory then
+		return exports.ox_inventory:Search('count', item) > 0
+	end
+	for _, v in pairs(ESX.GetPlayerData().inventory) do
+		print(v.name)
+		if v.name == item then
+			return true
+		end
+	end
+	return false
+end
+
 function OpenPoliceActionsMenu()
 	local elements = {
 		{unselectable = true, icon = "fas fa-triangle-exclamation", title = "Police"},
@@ -416,22 +448,26 @@ function OpenPoliceActionsMenu()
 
 	ESX.OpenContext("right", elements, function(menu,element)
 		if element.value == 'citizen_interaction' then
+			local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
+			if closestPlayer == -1 or closestDistance > 3.0 then return ESX.ShowNotification(TranslateCap('no_players_nearby')) end
+
 			local elements2 = {
                 {unselectable = true, icon = "fas fa-triangle-exclamation", title = element.title}
             }
 
             for i = 1, #Actions.citizen_interaction do
                 local action = Actions.citizen_interaction[i]
-				if not action.disableMenu then
+				if not action.disableMenu and (not action.items or HasPlayerItem(action.items)) and (not action.canInteract or action.canInteract(GetPlayerPed(closestPlayer))) then
 					elements2[#elements2+1] = {icon = 'fas fa-eye', title = action.title, i = i}
 				end
             end
 
 			ESX.OpenContext("right", elements2, function(menu2, element2)
                 local action = Actions.citizen_interaction[element2.i]
-				local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
+				closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
 				if closestPlayer == -1 or closestDistance > 3.0 then return ESX.ShowNotification(TranslateCap('no_players_nearby')) end
 
+				if action.closeMenu then ESX.CloseContext() end
                 if action.func then action.func(closestPlayer) end
                 if action.event then TriggerServerEvent(action.event, GetPlayerServerId(closestPlayer)) end
 			end, function()
@@ -446,7 +482,7 @@ function OpenPoliceActionsMenu()
 			if DoesEntityExist(vehicle) then
 				for i = 1, #Actions.vehicle_interaction do
 					local action = Actions.vehicle_interaction[i]
-					if not action.disableMenu then
+					if not action.disableMenu and (not action.items or HasPlayerItem(action.items)) and (not action.canInteract or action.canInteract(vehicle)) then
 						elements2[#elements2+1] = {icon = 'fas fa-car', title = action.title, action = action}
 					end
 				end
@@ -465,6 +501,7 @@ function OpenPoliceActionsMenu()
 				vehicle = ESX.Game.GetVehicleInDirection()
 				if not vehicle then return TranslateCap('no_vehicles_nearby') end
 
+				if action.closeMenu then ESX.CloseContext() end
 				if element2.action.func then element2.action.func(vehicle) end
                 if element2.action.event then TriggerServerEvent(element2.action.event, NetworkGetNetworkIdFromEntity(vehicle)) end
 			end, function()
@@ -489,6 +526,7 @@ function OpenPoliceActionsMenu()
 					SetEntityHeading(obj, GetEntityHeading(playerPed))
 					PlaceObjectOnGroundProperly(obj)
 				end)
+				ESX.CloseContext()
 			end, function()
 				OpenPoliceActionsMenu()
 			end)
@@ -521,6 +559,7 @@ if Config.EnableTarget and (GetResourceState('ox_target') == 'started') then
 				icon = action.icon or 'fas fa-eye',
 				distance = 3.0,
 				groups = 'police',
+				items = action.items,
 				canInteract = action.canInteract,
 				onSelect = function(data)
 					local player = NetworkGetPlayerIndexFromPed(data.entity)
@@ -543,6 +582,7 @@ if Config.EnableTarget and (GetResourceState('ox_target') == 'started') then
 				icon = action.icon or 'fas fa-car',
 				distance = 3.0,
 				groups = 'police',
+				items = action.items,
 				canInteract = action.canInteract,
 				onSelect = function(data)
 					if action.func then action.func(data.entity) end

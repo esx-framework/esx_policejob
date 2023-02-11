@@ -12,14 +12,22 @@ Config.EnableESXOptionalneeds     = false -- Enable if you're using esx_optional
 Config.EnableLicenses             = false -- Enable if you're using esx_license.
 Config.EnableTarget               = false -- Enable if you're using ox_target.
 
-Config.EnableHandcuffTimer        = true -- Enable handcuff timer? will unrestrain player after the time ends.
-Config.HandcuffTimer              = 10 * 60000 -- 10 minutes.
-Config.HandcuffDisableLook        = false -- If player can look around when is handcuffed
-Config.HandcuffDisableMovement    = false -- If player can walk around when is handcuffed
+Config.Handcuff = {
+	DisableLook			= false, -- If player can look around when is handcuffed
+	DisableMovement		= false, -- If player can walk around when is handcuffed
+	Item = {
+		Required		= false, -- If is item required to use handcuffs
+		Name			= "handcuffs" -- Item name in db
+	},
+	Timer = {
+		Enable			= true, -- Enable handcuff timer? will unrestrain player after the time ends.
+		Time			= 10 * 60000 -- 10 minutes.
+	},
+}
 
 Config.EnableObjectSpawner        = true -- If object spawner is enabled in actions menu (F6 menu)
 
-Config.EnableJobBlip              = true -- Enable blips for cops on duty, requires esx_society.
+Config.EnableJobBlip              = false -- Enable blips for cops on duty, requires esx_society.
 Config.EnableCustomPeds           = false -- Enable custom peds in cloak room? See Config.CustomPeds below to customize peds.
 
 Config.EnableESXService           = false -- Enable esx service?

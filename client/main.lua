@@ -26,12 +26,10 @@ end
 function setUniform(uniform, playerPed)
 	TriggerEvent('skinchanger:getSkin', function(skin)
 		local uniformObject
+		
+		sex = (skin.sex == 0) and "male" or "female"
 
-		if skin.sex == 0 then
-			uniformObject = Config.Uniforms[uniform].male
-		else
-			uniformObject = Config.Uniforms[uniform].female
-		end
+		uniformObject = Config.Uniforms[uniform][sex]
 
 		if uniformObject then
 			TriggerEvent('skinchanger:loadClothes', skin, uniformObject)

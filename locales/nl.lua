@@ -19,10 +19,10 @@ Locales['nl'] = {
     ['armory_free'] = 'Gratis',
     ['armory_item'] = '€%s',
     ['armory_weapontitle'] = 'Wapenkamer - Koop wapen',
-    ['armory_componenttitle'] = 'Wapenkamer - Weapon attachments',
+    ['armory_componenttitle'] = 'Wapenkamer - wapenbevestigingen',
     ['armory_bought'] = 'Je hebt een %s gekocht voor €%s.',
-    ['armory_money'] = 'Je kan dit wap niet betalen.',
-    ['armory_hascomponent'] = 'je hebt dit weapon attachment al!',
+    ['armory_money'] = 'Je kan dit wapen niet betalen.',
+    ['armory_hascomponent'] = 'je hebt deze wapenbevestiging al!',
     ['get_weapon_menu'] = 'Wapenkamer - Pak wapen',
     ['put_weapon_menu'] = 'Wapenkamer - Leg wapen weg',
     -- Vehicles

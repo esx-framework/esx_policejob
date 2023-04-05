@@ -61,9 +61,9 @@ function OpenVehicleSpawnerMenu(type, station, part, partNum)
 							local vehicleName = GetLabelText(GetDisplayNameFromVehicleModel(props.model))
 							local label = ('%s - <span style="color:darkgoldenrod;">%s</span>: '):format(vehicleName, props.plate)
 
-							if v.stored == 1 then
+							if v.stored == 1 or v.stored == true then
 								label = label .. ('<span style="color:green;">%s</span>'):format(TranslateCap('garage_stored'))
-							elseif v.stored == 0 then
+							elseif v.stored == 0 or v.stored == false then
 								label = label .. ('<span style="color:darkred;">%s</span>'):format(TranslateCap('garage_notstored'))
 							end
 

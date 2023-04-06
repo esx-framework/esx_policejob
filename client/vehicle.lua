@@ -81,7 +81,7 @@ function OpenVehicleSpawnerMenu(type, station, part, partNum)
 
 					if #garage > 0 then
 						ESX.OpenContext("right", garage, function(menuG,elementG)
-							if elementG.stored == 1 then
+							if elementG.stored == 1 or elementG.stored == true then
 								local foundSpawn, spawnPoint = GetAvailableVehicleSpawnPoint(station, part, partNum)
 
 								if foundSpawn then

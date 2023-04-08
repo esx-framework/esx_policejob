@@ -25,6 +25,7 @@ Locales['en'] = {
   ['armory_hascomponent'] = 'you have that attatchment equiped!',
   ['get_weapon_menu'] = 'armory - Withdraw Weapon',
   ['put_weapon_menu'] = 'armory - Store Weapon',
+  ['confirm'] = 'Confirm',
   -- Vehicles
   ['vehicle_menu'] = 'vehicle',
   ['vehicle_blocked'] = 'all available spawn points are currently blocked!',
@@ -53,6 +54,9 @@ Locales['en'] = {
   ['vehicleshop_awaiting_model'] = 'the vehicle is currently DOWNLOADING & LOADING please wait',
   ['confirm_no'] = 'no',
   ['confirm_yes'] = 'yes',
+  ['view'] = 'View',
+  ['buy_car'] = 'Buy',
+  ['stop_view'] = 'Stop Viewing',
   -- Service
   ['service_max'] = 'you cannot enter service, max officers in service: %s/%s',
   ['service_not'] = 'you have not entered service! You\'ll have to get changed first.',
@@ -62,6 +66,7 @@ Locales['en'] = {
   ['service_out'] = 'you have left service.',
   ['service_out_announce'] = 'operator %s has left their service.',
   -- Action Menu
+  ['menu_title'] = 'Police',
   ['citizen_interaction'] = 'citizen Interaction',
   ['vehicle_interaction'] = 'vehicle Interaction',
   ['object_spawner'] = 'object Spawner',
@@ -93,6 +98,8 @@ Locales['en'] = {
   ['search_database'] = 'vehicle information',
   ['search_database_title'] = 'vehicle information - search with registration number',
   ['search_database_error_invalid'] = 'that is ~r~not a valid registration number',
+  ['search_plate'] = 'Enter Plate',
+  ['lookup_plate'] = 'Lookup Plate',
   -- Traffic interaction
   ['traffic_interaction'] = 'interaction Traffic',
   ['cone'] = 'cone',
@@ -139,6 +146,7 @@ Locales['en'] = {
   ['have_withdrawn'] = 'you have withdrawn %sx %s',
   ['have_deposited'] = 'you have deposited %sx %s',
   ['quantity'] = 'quantity',
+  ['quantity_placeholder'] = 'Amount to withdraw..',
   ['inventory'] = 'inventory',
   ['police_stock'] = 'police Stock',
   -- Misc
@@ -148,4 +156,12 @@ Locales['en'] = {
   -- Notifications
   ['alert_police'] = 'police alert',
   ['phone_police'] = 'police',
+  -- Keybind
+  ['interaction'] = 'Interact',
+  ['quick_actions'] = 'Quick Actions',
+  -- Other
+  ['society_police'] = 'Police',
+  ['s_m_y_sheriff_01'] = 'Sheriff Ped', 
+  ['s_m_y_cop_01'] = 'Police Ped',
+  ['s_m_y_swat_01'] = 'SWAT Ped',
 }

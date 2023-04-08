@@ -25,6 +25,7 @@ Locales['nl'] = {
     ['armory_hascomponent'] = 'je hebt deze wapenbevestiging al!',
     ['get_weapon_menu'] = 'Wapenkamer - Pak wapen',
     ['put_weapon_menu'] = 'Wapenkamer - Leg wapen weg',
+    ['confirm'] = 'Confirm', --not translated
     -- Vehicles
     ['vehicle_menu'] = 'Voertuig',
     ['vehicle_blocked'] = 'Alle spawnpunten zijn geblokkeerd!',
@@ -53,6 +54,9 @@ Locales['nl'] = {
     ['vehicleshop_awaiting_model'] = 'Dit voertuig is momenteel aan het DOWNLOADEN & LADEN, even geduld asjeblieft',
     ['confirm_no'] = 'Nee',
     ['confirm_yes'] = 'Ja',
+    ['view'] = 'View', --not translated
+    ['buy_car'] = 'Buy', --not translated
+    ['stop_view'] = 'Stop Viewing', --not translated
     -- Service
     ['service_max'] = 'Je kan niet in dienst gaan, maximale aantal agenten in dienst: %s/%s',
     ['service_not'] = 'Je bent niet in dienst! Kleed je eerst om.',
@@ -62,6 +66,7 @@ Locales['nl'] = {
     ['service_out'] = 'Je bent nu uit dienst, fijne dag.',
     ['service_out_announce'] = 'Agent %s is nu niet meer in dienst.',
     -- Action Menu
+    ['menu_title'] = 'Police', --not translated
     ['citizen_interaction'] = 'Burger Interacties',
     ['vehicle_interaction'] = 'Voertuig Interacties',
     ['object_spawner'] = 'Object Interacties',
@@ -93,6 +98,8 @@ Locales['nl'] = {
     ['search_database'] = 'Kenteken natrekken',
     ['search_database_title'] = 'Voertuig informatie - zoek op kenteken',
     ['search_database_error_invalid'] = 'Het ingevoerde kenteken is ~r~ongeldig.',
+    ['search_plate'] = 'Enter Plate', --not translated
+    ['lookup_plate'] = 'Lookup Plate', --not translated
     -- Objecten
     ['traffic_interaction'] = 'Verkeers Interacties',
     ['cone'] = 'Pion',
@@ -140,6 +147,7 @@ Locales['nl'] = {
     ['have_withdrawn'] = 'Je hebt %sx %s gepakt.',
     ['have_deposited'] = 'Je hebt %sx %s weg gelegt.',
     ['quantity'] = 'Aantal',
+    ['quantity_placeholder'] = 'Amount to withdraw..', --not translated
     ['inventory'] = 'Inventaris',
     ['police_stock'] = 'Politie Voorraad',
     -- Misc
@@ -149,4 +157,12 @@ Locales['nl'] = {
     -- Notifications
     ['alert_police'] = 'politie alert',
     ['phone_police'] = 'politie',
+    -- Keybind
+    ['interaction'] = 'Interact', --not translated
+    ['quick_actions'] = 'Quick Actions', --not translated
+    -- Other
+    ['society_police'] = 'Police', --not translated
+    ['s_m_y_sheriff_01'] = 'Sheriff Ped', --not translated
+    ['s_m_y_cop_01'] = 'Police Ped', -- not translated
+    ['s_m_y_swat_01'] = 'SWAT Ped', --not translated
   }

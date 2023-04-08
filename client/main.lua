@@ -251,7 +251,7 @@ end
 
 function OpenPoliceActionsMenu()
 	local elements = {
-		{unselectable = true, icon = "fas fa-police", title = "Police"},
+		{unselectable = true, icon = "fas fa-police", title = TranslateCap('menu_title')},
 		{icon = "fas fa-user", title = TranslateCap('citizen_interaction'), value = 'citizen_interaction'},
 		{icon = "fas fa-car", title = TranslateCap('vehicle_interaction'), value = 'vehicle_interaction'},
 		{icon = "fas fa-object", title = TranslateCap('object_spawner'), value = 'object_spawner'}
@@ -557,8 +557,8 @@ end
 function LookupVehicle(elementF)
 	local elements = {
 		{unselectable = true, icon = "fas fa-car", title = elementF.title},
-		{title = "Enter Plate", input = true, inputType = "text", inputPlaceholder = "ABC 123"},
-		{icon = "fas fa-check-double", title = "Lookup Plate", value = "lookup"}
+		{title = TranslateCap('search_plate'), input = true, inputType = "text", inputPlaceholder = "ABC 123"},
+		{icon = "fas fa-check-double", title = TranslateCap('lookup_plate'), value = "lookup"}
 	}
 
 	ESX.OpenContext("right", elements, function(menu,element)
@@ -841,8 +841,8 @@ function OpenGetStocksMenu()
 
 			local elements2 = {
 				{unselectable = true, icon = "fas fa-box", title = element.title},
-				{title = TranslateCap('quantity'), input = true, inputType = "number", inputMin = 1, inputMax = 150, inputPlaceholder = "Amount to withdraw.."},
-				{icon = "fas fa-check-double", title = "Confirm", value = "confirm"}
+				{title = TranslateCap('quantity'), input = true, inputType = "number", inputMin = 1, inputMax = 150, inputPlaceholder = TranslateCap('quantity_placeholder')},
+				{icon = "fas fa-check-double", title = TranslateCap('confirm'), value = "confirm"}
 			}
 
 			ESX.OpenContext("right", elements2, function(menu2,element2)
@@ -888,8 +888,8 @@ function OpenPutStocksMenu()
 
 			local elements2 = {
 				{unselectable = true, icon = "fas fa-box", title = element.title},
-				{title = TranslateCap('quantity'), input = true, inputType = "number", inputMin = 1, inputMax = 150, inputPlaceholder = "Amount to withdraw.."},
-				{icon = "fas fa-check-double", title = "Confirm", value = "confirm"}
+				{title = TranslateCap('quantity'), input = true, inputType = "number", inputMin = 1, inputMax = 150, inputPlaceholder = TranslateCap('quantity_placeholder')},
+				{icon = "fas fa-check-double", title = TranslateCap('confirm'), value = "confirm"}
 			}
 
 			ESX.OpenContext("right", elements2, function(menu2,element2)
@@ -1373,7 +1373,7 @@ CreateThread(function()
 	end
 end)
 
-ESX.RegisterInput("police:interact", "(ESX PoliceJob) Interact", "keyboard", "E", function()
+ESX.RegisterInput("police:interact", "(ESX PoliceJob) " .. TranslateCap('interaction'), "keyboard", "E", function()
 	if not CurrentAction then 
 		return 
 	end
@@ -1425,7 +1425,7 @@ ESX.RegisterInput("police:interact", "(ESX PoliceJob) Interact", "keyboard", "E"
 	CurrentAction = nil
 end)
 
-ESX.RegisterInput("police:quickactions", "(ESX PoliceJob) Quick Actions", "keyboard", "F6", function()
+ESX.RegisterInput("police:quickactions", "(ESX PoliceJob) "..TranslateCap('quick_actions'), "keyboard", "F6", function()
 	if not ESX.PlayerData.job or (ESX.PlayerData.job.name ~= 'police') or isDead then
 		return
 	end

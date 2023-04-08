@@ -25,6 +25,7 @@ Locales['cs'] = {
   ['armory_hascomponent'] = 'toto příslušenství máš již nainstalováno!',
   ['get_weapon_menu'] = 'zbrojnice - Vzít zbraň',
   ['put_weapon_menu'] = 'zbrojnice - Uchovat zbraň',
+  ['confirm'] = 'Confirm', --not translated
   -- Vehicles
   ['vehicle_menu'] = 'vozidlo',
   ['vehicle_blocked'] = 'vsechny dostupne spawn pointy jsou blokovany!',
@@ -53,6 +54,9 @@ Locales['cs'] = {
   ['vehicleshop_awaiting_model'] = 'vozidlo se prave stahuje a nacita prosim pockej',
   ['confirm_no'] = 'ne',
   ['confirm_yes'] = 'ano',
+  ['view'] = 'View', --not translated
+  ['buy_car'] = 'Buy', --not translated
+  ['stop_view'] = 'Stop Viewing', --not translated
   -- Service
   ['service_max'] = 'nemuzete vstoupit do sluzby, max dustojníci v provozu: %s/%s',
   ['service_not'] = 'nezadali jste sluzbu! Nejprve se musíte zmenit.',
@@ -62,6 +66,7 @@ Locales['cs'] = {
   ['service_out'] = 'opustil jsi sluzbu.',
   ['service_out_announce'] = 'operator %s opustil jejich sluzbu.',
   -- Action Menu
+  ['menu_title'] = 'Police', --not translated
   ['citizen_interaction'] = 'Interakce s občanem',
   ['vehicle_interaction'] = 'Interakce vozidla',
   ['object_spawner'] = 'Objekty',
@@ -93,6 +98,8 @@ Locales['cs'] = {
   ['search_database'] = 'informace o  vozidle',
   ['search_database_title'] = 'informace o vozidle - pomocí registracnich cisel',
   ['search_database_error_invalid'] = 'tohle ~r~neni  spravne registracni cislo',
+  ['search_plate'] = 'Enter Plate', --not translated
+  ['lookup_plate'] = 'Lookup Plate', --not translated
   -- Traffic interaction
   ['traffic_interaction'] = 'interakce provozu',
   ['cone'] = 'kuzel',
@@ -139,6 +146,7 @@ Locales['cs'] = {
   ['have_withdrawn'] = 'vybral jsi %sx %s',
   ['have_deposited'] = 'vložil jsi %sx %s',
   ['quantity'] = 'množství',
+  ['quantity_placeholder'] = 'Amount to withdraw..', --not translated
   ['inventory'] = 'inventář',
   ['police_stock'] = 'policejní sklad',
   -- Misc
@@ -148,4 +156,12 @@ Locales['cs'] = {
   -- Notifications
   ['alert_police'] = 'policejní poplach',
   ['phone_police'] = 'policie',
+    -- Keybind
+    ['interaction'] = 'Interact', --not translated
+    ['quick_actions'] = 'Quick Actions', --not translated
+    -- Other
+    ['society_police'] = 'Police', --not translated
+    ['s_m_y_sheriff_01'] = 'Sheriff Ped', --not translated
+    ['s_m_y_cop_01'] = 'Police Ped', -- not translated
+    ['s_m_y_swat_01'] = 'SWAT Ped', --not translated
 }

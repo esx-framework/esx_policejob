@@ -25,6 +25,7 @@ Locales['hu'] = {
   ['armory_hascomponent'] = 'kiegészitö felvéve!',
   ['get_weapon_menu'] = 'Fegyvertár - fegyver kivétele',
   ['put_weapon_menu'] = 'Fegyvertár - fegyver berakása',
+  ['confirm'] = 'Confirm', --not translated
   -- Vehicles
   ['vehicle_menu'] = 'jármü',
   ['vehicle_blocked'] = 'Lerakási hely blokkolva!',
@@ -53,6 +54,9 @@ Locales['hu'] = {
   ['vehicleshop_awaiting_model'] = 'A jármű LETÖLT & BETÖLT kérlek várj',
   ['confirm_no'] = 'nem',
   ['confirm_yes'] = 'igen',
+  ['view'] = 'View', --not translated
+  ['buy_car'] = 'Buy', --not translated
+  ['stop_view'] = 'Stop Viewing', --not translated
   -- Service
   ['service_max'] = 'Nem léphet szolgálatba. Maximális létszám: %s/%s',
   ['service_not'] = 'Elöször vedd fel a szolgálatot...',
@@ -62,6 +66,7 @@ Locales['hu'] = {
   ['service_out'] = 'elhagytad a szolgálatot.',
   ['service_out_announce'] = 'operátor %s leadta a szolgálatot.',
   -- Action Menu
+  ['menu_title'] = 'Police', --not translated
   ['citizen_interaction'] = 'Ember interakciók',
   ['vehicle_interaction'] = 'Jármű interakciók',
   ['object_spawner'] = 'Objektum lerakása',
@@ -93,6 +98,8 @@ Locales['hu'] = {
   ['search_database'] = 'Keresés rendszám alapján',
   ['search_database_title'] = 'jármü információk - keresés rendszám alapján',
   ['search_database_error_invalid'] = 'ez ~r~nem egy érvényes rendszám',
+  ['search_plate'] = 'Enter Plate', --not translated
+  ['lookup_plate'] = 'Lookup Plate', --not translated
   -- Traffic interaction
   ['traffic_interaction'] = 'Útzárak',
   ['cone'] = 'bólya',
@@ -140,6 +147,7 @@ Locales['hu'] = {
   ['have_withdrawn'] = 'Kivetted %sx %s',
   ['have_deposited'] = 'Beraktad %sx %s',
   ['quantity'] = 'mennyiség',
+  ['quantity_placeholder'] = 'Amount to withdraw..', --not translated
   ['inventory'] = 'leltár',
   ['police_stock'] = 'Állomány',
   -- Misc
@@ -149,4 +157,12 @@ Locales['hu'] = {
   -- Notifications
   ['alert_police'] = 'riasztás',
   ['phone_police'] = 'rendörség',
+  -- Keybind
+  ['interaction'] = 'Interakció', --not translated
+  ['quick_actions'] = 'Gyorsmenü', --not translated
+  -- Other
+  ['society_police'] = 'Rendőrség', --not translated
+  ['s_m_y_sheriff_01'] = 'Sheriff Ped', --not translated
+  ['s_m_y_cop_01'] = 'Rendőr Ped', -- not translated
+  ['s_m_y_swat_01'] = 'SWAT Ped', --not translated
 }

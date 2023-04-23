@@ -1,8 +1,6 @@
-if Config.EnableESXService then
-	if Config.MaxInService ~= -1 then
-		TriggerEvent('esx_service:activateService', 'police', Config.MaxInService)
-	end
-end
+if Config.EnableESXService and Config.MaxInService ~= -1 then
+	TriggerEvent('esx_service:activateService', 'police', Config.MaxInService)
+ end
 
 TriggerEvent('esx_phone:registerNumber', 'police', TranslateCap('alert_police'), true, true)
 TriggerEvent('esx_society:registerSociety', 'police', 'Police', 'society_police', 'society_police', 'society_police', {type = 'public'})
@@ -81,26 +79,27 @@ end)
 
 RegisterNetEvent('esx_policejob:drag')
 AddEventHandler('esx_policejob:drag', function(target)
-	local xPlayer = ESX.GetPlayerFromId(source)
+   local xPlayer = ESX.GetPlayerFromId(source)
+   if not xPlayer or not xPlayer.job or xPlayer.job.name ~= 'police' then
+      return
+   end
 
-	if xPlayer.job.name == 'police' then
-		TriggerClientEvent('esx_policejob:drag', target, source)
-	else
-		print(('[^3WARNING^7] Player ^5%s^7 Attempted To Exploit Dragging!'):format(xPlayer.source))
-	end
+   TriggerClientEvent('esx_policejob:drag', target, source)
 end)
+
 
 RegisterNetEvent('esx_policejob:putInVehicle')
 AddEventHandler('esx_policejob:putInVehicle', function(target)
-	local xPlayer = ESX.GetPlayerFromId(source)
+    local source = source
+    local xPlayer = ESX.GetPlayerFromId(source)
+    local jobName = xPlayer.job.name
 
-	if xPlayer.job.name == 'police' then
-		TriggerClientEvent('esx_policejob:putInVehicle', target)
-	else
-		print(('[^3WARNING^7] Player ^5%s^7 Attempted To Exploit Garage!'):format(xPlayer.source))
-	end
+    if jobName == 'police' then
+        TriggerClientEvent('esx_policejob:putInVehicle', target)
+    else
+        print(('[^3WARNING^7] Player ^5%s^7 Attempted To Exploit Garage!'):format(xPlayer.source))
+    end
 end)
-
 RegisterNetEvent('esx_policejob:OutVehicle')
 AddEventHandler('esx_policejob:OutVehicle', function(target)
 	local xPlayer = ESX.GetPlayerFromId(source)

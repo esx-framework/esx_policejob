@@ -27,5 +27,9 @@ client_scripts {
 dependencies {
 	'es_extended',
 	'esx_billing',
+	'esx_status',
+	'esx_license',
+	'esx_service',
+	'skinchanger',
 	'esx_vehicleshop'
 }

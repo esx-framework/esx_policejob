@@ -25,6 +25,7 @@ Locales['pl'] = {
   ['armory_hascomponent'] = 'you have that attatchment equiped!',
   ['get_weapon_menu'] = 'armory - Withdraw Weapon',
   ['put_weapon_menu'] = 'armory - Store Weapon',
+  ['confirm'] = 'Confirm', --not translated
   -- Vehicles
   ['vehicle_menu'] = 'vehicle',
   ['vehicle_blocked'] = 'all available spawn points are currently blocked!',
@@ -53,6 +54,9 @@ Locales['pl'] = {
   ['vehicleshop_awaiting_model'] = 'the vehicle is currently DOWNLOADING & LOADING please wait',
   ['confirm_no'] = 'no',
   ['confirm_yes'] = 'yes',
+  ['view'] = 'View', --not translated
+  ['buy_car'] = 'Buy', --not translated
+  ['stop_view'] = 'Stop Viewing', --not translated
   -- Service
   ['service_max'] = 'nie możesz wejść do służby, maksymalna liczba oficerów w służbie: %s/%s',
   ['service_not'] = 'nie rozpoczynasz służby! Najpierw musisz się przebrać.',
@@ -62,6 +66,7 @@ Locales['pl'] = {
   ['service_out'] = 'opuszczasz służbę.',
   ['service_out_announce'] = 'operator %s opuszcza służbe.',
   -- Action Menu
+  ['menu_title'] = 'Police', --not translated
   ['citizen_interaction'] = 'interakcja z cywilami',
   ['vehicle_interaction'] = 'interakcja z pojazdami',
   ['object_spawner'] = 'przedmioty do postawienia',
@@ -93,6 +98,8 @@ Locales['pl'] = {
   ['search_database'] = 'informacje o pojeździe',
   ['search_database_title'] = 'informacjeo pojeździe - przeszukaj używając numeru rejestracyjnego',
   ['search_database_error_invalid'] = 'to ~r~nie jest poprawny rnumer rejestracyjny',
+  ['search_plate'] = 'Enter Plate', --not translated
+  ['lookup_plate'] = 'Lookup Plate', --not translated
   -- Traffic interaction
   ['traffic_interaction'] = 'interakcje dla ruchu drogowego',
   ['cone'] = 'pachołek',
@@ -139,6 +146,7 @@ Locales['pl'] = {
   ['have_withdrawn'] = 'wyjmujesz z depozytu %sx %s',
   ['have_deposited'] = 'zdeponowano %sx %s',
   ['quantity'] = 'ilość',
+  ['quantity_placeholder'] = 'Amount to withdraw..', --not translated
   ['inventory'] = 'ekwipunek',
   ['police_stock'] = 'zapasy policji',
   -- Misc
@@ -148,4 +156,12 @@ Locales['pl'] = {
   -- Notifications
   ['alert_police'] = 'ostrzeż policję',
   ['phone_police'] = 'police',
+  -- Keybind
+  ['interaction'] = 'Interact', --not translated
+  ['quick_actions'] = 'Quick Actions', --not translated
+  -- Other
+  ['society_police'] = 'Police', --not translated
+  ['s_m_y_sheriff_01'] = 'Sheriff Ped', --not translated
+  ['s_m_y_cop_01'] = 'Police Ped', -- not translated
+  ['s_m_y_swat_01'] = 'SWAT Ped', --not translated
 }

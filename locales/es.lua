@@ -25,6 +25,7 @@ Locales['es'] = {
   ['armory_hascomponent'] = '¡Ya dispones de ese complemento!',
   ['get_weapon_menu'] = 'Armeria - Retirar arma',
   ['put_weapon_menu'] = 'Armeria - Guardar arma',
+  ['confirm'] = 'Confirm', --not translated
   -- Vehicles
   ['vehicle_menu'] = 'Vehículos',
   ['vehicle_blocked'] = '¡Todos los puntos de aparición de vehículos están ocupados!',
@@ -53,6 +54,9 @@ Locales['es'] = {
   ['vehicleshop_awaiting_model'] = 'El vehículo se está DESCARGANDO Y CARGANDO porfavor espere',
   ['confirm_no'] = 'no',
   ['confirm_yes'] = 'si',
+  ['view'] = 'View', --not translated
+  ['buy_car'] = 'Buy', --not translated
+  ['stop_view'] = 'Stop Viewing', --not translated
   -- Service
   ['service_max'] = 'No puedes entrar de servicio porque se ha alcanzado el número máximo: %s/%s',
   ['service_not'] = '¡No has entrado de servicio! Debes hacerlo primeramente.',
@@ -62,6 +66,7 @@ Locales['es'] = {
   ['service_out'] = 'Has salido de servicio.',
   ['service_out_announce'] = 'El agente %s se ha salido de servicio.',
   -- Action Menu
+  ['menu_title'] = 'Police', --not translated
   ['citizen_interaction'] = 'Interacción ciudadana',
   ['vehicle_interaction'] = 'Interacción vehículo',
   ['object_spawner'] = 'Colocar objetos',
@@ -93,6 +98,8 @@ Locales['es'] = {
   ['search_database'] = 'vehicle information',
   ['search_database_title'] = 'vehicle information - search with registration number',
   ['search_database_error_invalid'] = 'that is ~r~not a valid registration number',
+  ['search_plate'] = 'Enter Plate', --not translated
+  ['lookup_plate'] = 'Lookup Plate', --not translated
   -- Traffic interaction
   ['traffic_interaction'] = 'Rutas de interacción',
   ['cone'] = 'Cono',
@@ -139,6 +146,7 @@ Locales['es'] = {
   ['have_withdrawn'] = 'you have withdrawn %sx %s',
   ['have_deposited'] = 'you have deposited %sx %s',
   ['quantity'] = 'cantidad',
+  ['quantity_placeholder'] = 'Amount to withdraw..', --not translated
   ['inventory'] = 'inventario',
   ['police_stock'] = 'almacen Policial',
   -- Misc
@@ -148,4 +156,13 @@ Locales['es'] = {
   -- Notifications
   ['alert_police'] = 'alerta policia',
   ['phone_police'] = 'policia',
+  -- Keybind
+  ['interaction'] = 'Interact', --not translated
+  ['quick_actions'] = 'Quick Actions', --not translated
+  -- Other
+  ['society_police'] = 'Police', --not translated
+  ['s_m_y_sheriff_01'] = 'Sheriff Ped', --not translated
+  ['s_m_y_cop_01'] = 'Police Ped', -- not translated
+  ['s_m_y_swat_01'] = 'SWAT Ped', --not translated
+  
 }

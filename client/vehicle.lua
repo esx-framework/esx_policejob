@@ -205,7 +205,7 @@ function OpenShopMenu(elements, restoreCoords, shopCoords)
 	ESX.OpenContext("right", elements, function(menu,element)
 		local elements2 = {
 			{unselectable = true, icon = "fas fa-car", title = element.title},
-			{icon = "fas fa-eye", title = "View", value = "view"}
+			{icon = "fas fa-eye", title = TranslateCap('view'), value = "view"}
 		}
 
 		ESX.OpenContext("right", elements2, function(menu2,element2)
@@ -226,8 +226,8 @@ function OpenShopMenu(elements, restoreCoords, shopCoords)
 
 				local elements3 = {
 					{unselectable = true, icon = "fas fa-car", title = element.title},
-					{icon = "fas fa-check-double", title = "Buy", value = "buy"},
-					{icon = "fas fa-eye", title = "Stop Viewing", value = "stop"}
+					{icon = "fas fa-check-double", title = TranslateCap('buy_car'), value = "buy"},
+					{icon = "fas fa-eye", title = TranslateCap('stop_view'), value = "stop"}
 				}
 
 				ESX.OpenContext("right", elements3, function(menu3,element3)

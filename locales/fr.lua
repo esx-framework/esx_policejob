@@ -25,6 +25,7 @@ Locales['fr'] = {
   ['armory_hascomponent'] = 'vous avez cet accessoire équipé!',
   ['get_weapon_menu'] = 'armurerie - Retirer arme',
   ['put_weapon_menu'] = 'armurerie - Stocker arme',
+  ['confirm'] = 'Confirm', --not translated
   -- Vehicles
   ['vehicle_menu'] = 'véhicule',
   ['vehicle_blocked'] = 'tous les points de spawn sont bloqués!',
@@ -53,6 +54,9 @@ Locales['fr'] = {
   ['vehicleshop_awaiting_model'] = 'le véhicule est actuellement en PRÉPARATION veuillez patienter',
   ['confirm_no'] = 'non',
   ['confirm_yes'] = 'oui',
+  ['view'] = 'View', --not translated
+  ['buy_car'] = 'Buy', --not translated
+  ['stop_view'] = 'Stop Viewing', --not translated
   -- Service
   ['service_max'] = 'vous ne pouvez pas entrer en service, officiers en service: %s/%s',
   ['service_not'] = 'vous n\'êtes pas en service! Vous devez d\'abord enfiler votre tenue.',
@@ -62,6 +66,7 @@ Locales['fr'] = {
   ['service_out'] = 'vous avez terminé votre service.',
   ['service_out_announce'] = 'l\'officier %s a quitté son service.',
   -- Action Menu
+  ['menu_title'] = 'Police', --not translated
   ['citizen_interaction'] = 'interaction citoyen',
   ['vehicle_interaction'] = 'interaction véhicule',
   ['object_spawner'] = 'placer objets',
@@ -93,6 +98,8 @@ Locales['fr'] = {
   ['search_database'] = 'information sur le véhicule',
   ['search_database_title'] = 'informations sur le véhicule - recherche avec numéro d\'enregistrement',
   ['search_database_error_invalid'] = 'Ce n\'est ~r~pas un numéro d\'enregistrement valide',
+  ['search_plate'] = 'Enter Plate', --not translated
+  ['lookup_plate'] = 'Lookup Plate', --not translated
   -- Traffic interaction
   ['traffic_interaction'] = 'interaction routière',
   ['cone'] = 'plot',
@@ -139,6 +146,7 @@ Locales['fr'] = {
   ['have_withdrawn'] = 'vous avez retiré %sx %s',
   ['have_deposited'] = 'vous avez déposé %sx %s',
   ['quantity'] = 'quantité',
+  ['quantity_placeholder'] = 'Amount to withdraw..', --not translated
   ['inventory'] = 'inventaire',
   ['police_stock'] = 'coffre de la police',
   -- Misc
@@ -148,4 +156,13 @@ Locales['fr'] = {
   -- Notifications
   ['alert_police'] = 'alerte police',
   ['phone_police'] = 'police',
+  -- Keybind
+  ['interaction'] = 'Interact', --not translated
+  ['quick_actions'] = 'Quick Actions', --not translated
+  -- Other
+  ['society_police'] = 'Police', --not translated
+  ['s_m_y_sheriff_01'] = 'Sheriff Ped', --not translated
+  ['s_m_y_cop_01'] = 'Police Ped', -- not translated
+  ['s_m_y_swat_01'] = 'SWAT Ped', --not translated
+  
 }

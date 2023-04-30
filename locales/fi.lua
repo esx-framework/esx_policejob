@@ -25,6 +25,7 @@ Locales['fi'] = {
   ['armory_hascomponent'] = 'you have that attatchment equiped!',
   ['get_weapon_menu'] = 'armory - Withdraw Weapon',
   ['put_weapon_menu'] = 'armory - Store Weapon',
+  ['confirm'] = 'Confirm', --not translated
   -- Vehicles
   ['vehicle_menu'] = 'vehicle',
   ['vehicle_blocked'] = 'all available spawn points are currently blocked!',
@@ -53,6 +54,9 @@ Locales['fi'] = {
   ['vehicleshop_awaiting_model'] = 'the vehicle is currently DOWNLOADING & LOADING please wait',
   ['confirm_no'] = 'no',
   ['confirm_yes'] = 'yes',
+  ['view'] = 'View', --not translated
+  ['buy_car'] = 'Buy', --not translated
+  ['stop_view'] = 'Stop Viewing', --not translated
   -- Service
   ['service_max'] = 'you cannot enter service, max officers in service: %s/%s',
   ['service_not'] = 'you have not entered service! You\'ll have to get changed first.',
@@ -62,6 +66,7 @@ Locales['fi'] = {
   ['service_out'] = 'you have left service.',
   ['service_out_announce'] = 'operator %s has left their service.',
   -- Action Menu
+  ['menu_title'] = 'Police', --not translated
   ['citizen_interaction'] = 'siviilin vuorovaikutus',
   ['vehicle_interaction'] = 'ajoneuvon vuorovaikutus',
   ['object_spawner'] = 'objekti spawneri',
@@ -93,6 +98,8 @@ Locales['fi'] = {
   ['search_database'] = 'ajoneuvon tiedot',
   ['search_database_title'] = 'ajoneuvon tiedot - etsi rekisterinumerolla',
   ['search_database_error_invalid'] = 'tämä ~r~ei ole voimassa oleva rekisterinumero',
+  ['search_plate'] = 'Enter Plate', --not translated
+  ['lookup_plate'] = 'Lookup Plate', --not translated
   -- Traffic interaction
   ['traffic_interaction'] = 'liikenteen vuorovaikutus',
   ['cone'] = 'kartio',
@@ -139,6 +146,7 @@ Locales['fi'] = {
   ['have_withdrawn'] = 'sinä otit varastosta %sx %s',
   ['have_deposited'] = 'sinä talletit varastoon %sx %s',
   ['quantity'] = 'määrä',
+  ['quantity_placeholder'] = 'Amount to withdraw..', --not translated
   ['inventory'] = 'varasto',
   ['police_stock'] = 'poliisin Varasto',
   -- Misc
@@ -148,4 +156,13 @@ Locales['fi'] = {
   -- Notifications
   ['alert_police'] = 'hälyytys Poliisi',
   ['phone_police'] = 'poliisi',
+  -- Keybind
+  ['interaction'] = 'Interact', --not translated
+  ['quick_actions'] = 'Quick Actions', --not translated
+  -- Other
+  ['society_police'] = 'Police', --not translated
+  ['s_m_y_sheriff_01'] = 'Sheriff Ped', --not translated
+  ['s_m_y_cop_01'] = 'Police Ped', -- not translated
+  ['s_m_y_swat_01'] = 'SWAT Ped', --not translated
+  
 }

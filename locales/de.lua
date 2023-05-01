@@ -25,7 +25,7 @@ Locales['de'] = {
   ['armory_hascomponent'] = 'Du hast dieses Zubehör an deiner Waffe!',
   ['get_weapon_menu'] = 'Waffenkammer - Waffe nehmen',
   ['put_weapon_menu'] = 'Waffenkammer - Waffe verstauen',
-  ['confirm'] = 'Confirm', --not translated
+  ['confirm'] = 'Bestätigen',
   -- Vehicles
   ['vehicle_menu'] = 'Fahrzeug',
   ['vehicle_blocked'] = 'Alle verfügbaren Spawnpunkte sind derzeit belegt!',
@@ -54,9 +54,9 @@ Locales['de'] = {
   ['vehicleshop_awaiting_model'] = 'Das Fahrzeug ist derzeit am ~g~Herunterladen & Laden~s~ warte bitte...',
   ['confirm_no'] = 'Nein',
   ['confirm_yes'] = 'Ja',
-	['view'] = 'View', --not translated
-	['buy_car'] = 'Buy', --not translated
-	['stop_view'] = 'Stop Viewing', --not translated
+  ['view'] = 'Ansehen',
+  ['buy_car'] = 'Kaufen',
+  ['stop_view'] = 'Ansehen beenden',
   -- Service
   ['service_max'] = 'Du kannst nicht On-Duty gehen. Es sind zuviele Officer im Dienst: %s/%s',
   ['service_not'] = 'Du bist nun On-Duty! Du musst dich zuerst umziehen!',
@@ -66,7 +66,7 @@ Locales['de'] = {
   ['service_out'] = 'Du bist nun Off-Duty',
   ['service_out_announce'] = 'Officer ~y~%s~s~ ist nun nicht mehr im Dienst!',
   -- Action Menu
-  ['menu_title'] = 'Police', --not translated
+  ['menu_title'] = 'Polizei',
   ['citizen_interaction'] = 'Zivilisten Interaktion',
   ['vehicle_interaction'] = 'Fahrzeug Interaktion',
   ['object_spawner'] = 'Objekt Spawner',
@@ -99,8 +99,8 @@ Locales['de'] = {
   ['search_database_title'] = 'Fahrzeug Informationen - Suche mit dem Kennzeichen',
   ['search_database_error_invalid'] = 'Das ist kein gültiges Kennzeichen!',
   -- Traffic interaction
-	['search_plate'] = 'Enter Plate', --not translated
-	['lookup_plate'] = 'Lookup Plate', --not translated
+  ['search_plate'] = 'Kennzeichen Eingeben',
+  ['lookup_plate'] = 'Kennzeichen Suchen',
   ['traffic_interaction'] = 'Vehrkehrs Interaktionen',
   ['cone'] = 'Hütchen',
   ['barrier'] = 'Barriere',
@@ -146,7 +146,7 @@ Locales['de'] = {
   ['have_withdrawn'] = 'Du zahlst ~y~%sx~s~ ~b~%s~s~ aus',
   ['have_deposited'] = 'Du zahlst ~y~%sx~s~ ~b~%s~s~ ein',
   ['quantity'] = 'Anzahl',
-  ['quantity_placeholder'] = 'Amount to withdraw..', --not translated
+  ['quantity_placeholder'] = 'Anzahl zum Einzahlen..',
   ['inventory'] = 'Inventar',
   ['police_stock'] = 'Polizeilager',
   -- Misc
@@ -156,12 +156,12 @@ Locales['de'] = {
   -- Notifications
   ['alert_police'] = 'Polizei Alarmieren',
   ['phone_police'] = 'Polizei',
-	-- Keybind
-	['interaction'] = 'Interact', --not translated
-	['quick_actions'] = 'Quick Actions', --not translated
-	-- Other
-	['society_police'] = 'Police', --not translated
-	['s_m_y_sheriff_01'] = 'Sheriff Ped', --not translated
-  ['s_m_y_cop_01'] = 'Police Ped', -- not translated
-	['s_m_y_swat_01'] = 'SWAT Ped', --not translated
+  -- Keybind
+  ['interaction'] = 'Interagieren',
+  ['quick_actions'] = 'Schnelle Aktionen',
+  -- Other
+  ['society_police'] = 'Polizei',
+  ['s_m_y_sheriff_01'] = 'Sheriff Charakter',
+  ['s_m_y_cop_01'] = 'Polizei Charakter',
+  ['s_m_y_swat_01'] = 'SWAT Charakter',
 }

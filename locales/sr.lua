@@ -25,7 +25,7 @@ Locales['sr'] = {
 	['armory_hascomponent'] = 'vec imate taj dodatak!',
 	['get_weapon_menu'] = 'oruzarnica - Podizanje oruzja',
 	['put_weapon_menu'] = 'oruzarnica - Ostavljanje oruzja',
-	['confirm'] = 'Confirm', --not translated
+	['confirm'] = 'Potvrdi',
 	-- Vehicles
 	['vehicle_menu'] = 'vozilo',
 	['vehicle_blocked'] = 'parking je trenutno blokiran!',
@@ -54,9 +54,9 @@ Locales['sr'] = {
 	['vehicleshop_awaiting_model'] = 'vozilo se trenutno SKIDA & UCITAVA, sacekajte..',
 	['confirm_no'] = 'ne',
 	['confirm_yes'] = 'da',
-	['view'] = 'View', --not translated
-	['buy_car'] = 'Buy', --not translated
-	['stop_view'] = 'Stop Viewing', --not translated
+	['view'] = 'Pregledaj',
+	['buy_car'] = 'Kupi',
+	['stop_view'] = 'Prekini Pregledanje',
 	-- Service
 	['service_max'] = 'ne mozete pristupiti sluzbi, najvise pripadnika u sluzbi: %s/%s',
 	['service_not'] = 'niste pristupili sluzbi! Prvo se morate presvuci.',
@@ -66,7 +66,7 @@ Locales['sr'] = {
 	['service_out'] = 'napustili ste sluzbu.',
 	['service_out_announce'] = 'operator %s je napustio sluzbu.',
 	-- Action Menu
-	['menu_title'] = 'Police', --not translated
+	['menu_title'] = 'Policija',
 	['citizen_interaction'] = 'Interakcija sa ljudima',
 	['vehicle_interaction'] = 'Interakcija sa vozilom',
 	['object_spawner'] = 'Objekti',
@@ -98,8 +98,8 @@ Locales['sr'] = {
 	['search_database'] = 'informacije vozila',
 	['search_database_title'] = 'informacije vozila - pretrazite pomocu tablica',
 	['search_database_error_invalid'] = 'to ~r~nije validan registarski broj',
-	['search_plate'] = 'Enter Plate', --not translated
-	['lookup_plate'] = 'Lookup Plate', --not translated
+	['search_plate'] = 'Unesi Tablice',
+	['lookup_plate'] = 'Trazi Tablice',
 	-- Traffic interaction
 	['traffic_interaction'] = 'Interakcije saobracajem',
 	['cone'] = 'Cunj',
@@ -146,7 +146,7 @@ Locales['sr'] = {
 	['have_withdrawn'] = 'podigli ste %sx %s',
 	['have_deposited'] = 'ostavili ste %sx %s',
 	['quantity'] = 'kolicina',
-	['quantity_placeholder'] = 'Amount to withdraw..', --not translated
+	['quantity_placeholder'] = 'Iznos za podizanje..',
 	['inventory'] = 'inventar',
 	['police_stock'] = 'policijska zaliha',
 	-- Misc
@@ -157,11 +157,11 @@ Locales['sr'] = {
 	['alert_police'] = 'policijsko obavestenje',
 	['phone_police'] = 'policija',
 	 -- Keybind
-	 ['interaction'] = 'Interact', --not translated
-	 ['quick_actions'] = 'Quick Actions', --not translated
+	 ['interaction'] = 'Interakcija',
+	 ['quick_actions'] = 'Brze Akcije',
 	 -- Other
-	 ['society_police'] = 'Police', --not translated
-	 ['s_m_y_sheriff_01'] = 'Sheriff Ped', --not translated
-	 ['s_m_y_cop_01'] = 'Police Ped', -- not translated
-	 ['s_m_y_swat_01'] = 'SWAT Ped', --not translated
+	 ['society_police'] = 'Policija',
+	 ['s_m_y_sheriff_01'] = 'Sheriff Ped',
+	 ['s_m_y_cop_01'] = 'Policija Ped',
+	 ['s_m_y_swat_01'] = 'SWAT Ped',
 }

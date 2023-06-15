@@ -61,9 +61,9 @@ function OpenVehicleSpawnerMenu(type, station, part, partNum)
 							local vehicleName = GetLabelText(GetDisplayNameFromVehicleModel(props.model))
 							local label = ('%s - <span style="color:darkgoldenrod;">%s</span>: '):format(vehicleName, props.plate)
 
-							if v.stored == 1 then
+							if v.stored == 1 or v.stored == true then
 								label = label .. ('<span style="color:green;">%s</span>'):format(TranslateCap('garage_stored'))
-							elseif v.stored == 0 then
+							elseif v.stored == 0 or v.stored == false then
 								label = label .. ('<span style="color:darkred;">%s</span>'):format(TranslateCap('garage_notstored'))
 							end
 
@@ -81,7 +81,7 @@ function OpenVehicleSpawnerMenu(type, station, part, partNum)
 
 					if #garage > 0 then
 						ESX.OpenContext("right", garage, function(menuG,elementG)
-							if elementG.stored == 1 then
+							if elementG.stored == 1 or elementG.stored == true then
 								local foundSpawn, spawnPoint = GetAvailableVehicleSpawnPoint(station, part, partNum)
 
 								if foundSpawn then
@@ -205,7 +205,7 @@ function OpenShopMenu(elements, restoreCoords, shopCoords)
 	ESX.OpenContext("right", elements, function(menu,element)
 		local elements2 = {
 			{unselectable = true, icon = "fas fa-car", title = element.title},
-			{icon = "fas fa-eye", title = "View", value = "view"}
+			{icon = "fas fa-eye", title = TranslateCap('view'), value = "view"}
 		}
 
 		ESX.OpenContext("right", elements2, function(menu2,element2)
@@ -226,8 +226,8 @@ function OpenShopMenu(elements, restoreCoords, shopCoords)
 
 				local elements3 = {
 					{unselectable = true, icon = "fas fa-car", title = element.title},
-					{icon = "fas fa-check-double", title = "Buy", value = "buy"},
-					{icon = "fas fa-eye", title = "Stop Viewing", value = "stop"}
+					{icon = "fas fa-check-double", title = TranslateCap('buy_car'), value = "buy"},
+					{icon = "fas fa-eye", title = TranslateCap('stop_view'), value = "stop"}
 				}
 
 				ESX.OpenContext("right", elements3, function(menu3,element3)

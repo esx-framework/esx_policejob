@@ -168,8 +168,8 @@ Config.AuthorizedVehicles = {
 
 Config.CustomPeds = {
 	shared = {
-		{label = 'Sheriff Ped', maleModel = 's_m_y_sheriff_01', femaleModel = 's_f_y_sheriff_01'},
-		{label = 'Police Ped', maleModel = 's_m_y_cop_01', femaleModel = 's_f_y_cop_01'}
+		{label = TranslateCap('s_m_y_sheriff_01'), maleModel = 's_m_y_sheriff_01', femaleModel = 's_f_y_sheriff_01'},
+		{label = TranslateCap('s_m_y_cop_01'), maleModel = 's_m_y_cop_01', femaleModel = 's_f_y_cop_01'}
 	},
 
 	recruit = {},
@@ -181,7 +181,7 @@ Config.CustomPeds = {
 	lieutenant = {},
 
 	boss = {
-		{label = 'SWAT Ped', maleModel = 's_m_y_swat_01', femaleModel = 's_m_y_swat_01'}
+		{label = TranslateCap('s_m_y_swat_01'), maleModel = 's_m_y_swat_01', femaleModel = 's_m_y_swat_01'}
 	}
 }
 

@@ -148,4 +148,12 @@ Locales['sr'] = {
 		-- Notifications
 		['alert_police'] = 'Policijsko obaveštenje',
 		['phone_police'] = 'Policija',
-	  }
+	 -- Keybind
+	 ['interaction'] = 'Interakcija',
+	 ['quick_actions'] = 'Brze Akcije',
+	 -- Other
+	 ['society_police'] = 'Policija',
+	 ['s_m_y_sheriff_01'] = 'Sheriff Ped',
+	 ['s_m_y_cop_01'] = 'Policija Ped',
+	 ['s_m_y_swat_01'] = 'SWAT Ped'
+}

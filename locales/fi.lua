@@ -25,7 +25,7 @@ Locales['fi'] = {
   ['armory_hascomponent'] = 'sinulla on jo tämä aseenosa!',
   ['get_weapon_menu'] = 'asevarasto - ota ase',
   ['put_weapon_menu'] = 'asevarasto - talleta ase',
-  ['confirm'] = 'varmista', --not translated
+  ['confirm'] = 'varmista',
   -- Vehicles
   ['vehicle_menu'] = 'ajoneuvo',
   ['vehicle_blocked'] = 'kaikki saatavilla olevat parkkipaikat on varattuja!',
@@ -146,7 +146,7 @@ Locales['fi'] = {
   ['have_withdrawn'] = 'sinä otit varastosta %sx %s',
   ['have_deposited'] = 'sinä talletit varastoon %sx %s',
   ['quantity'] = 'määrä',
-  ['quantity_placeholder'] = 'Määrä mitä otat..', --not translated
+  ['quantity_placeholder'] = 'Määrä mitä otat..',
   ['inventory'] = 'varasto',
   ['police_stock'] = 'poliisin Varasto',
   -- Misc

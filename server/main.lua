@@ -116,7 +116,10 @@ RegisterNetEvent('esx_policejob:getStockItem')
 AddEventHandler('esx_policejob:getStockItem', function(itemName, count)
 	local source = source
 	local xPlayer = ESX.GetPlayerFromId(source)
-
+	if xPlayer.job.name ~= 'police' then
+		print(('[^3WARNING^7] Player ^5"%s"^7 attempted to take %s x %s from the Police Job society inventory without the right job!'):format(xPlayer.source, count, itemName))
+		return
+	end
 	TriggerEvent('esx_addoninventory:getSharedInventory', 'society_police', function(inventory)
 		local inventoryItem = inventory.getItem(itemName)
 

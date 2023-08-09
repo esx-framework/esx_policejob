@@ -521,35 +521,44 @@ function OpenFineMenu(player)
 	end)
 end
 
+local fineList = {}
 function OpenFineCategoryMenu(player, category)
-	ESX.TriggerServerCallback('esx_policejob:getFineList', function(fines)
-		local elements = {
-			{unselectable = true, icon = "fas fa-scroll", title = TranslateCap('fine')}
-		}
+	if not fineList[category] then
+		ESX.TriggerServerCallback('esx_policejob:getFineList', function(fines)
+			fineList[category] = fines
+		end, category)
 
-		for k,fine in ipairs(fines) do
-			elements[#elements+1] = {
-				icon = "fas fa-scroll",
-				title     = ('%s <span style="color:green;">%s</span>'):format(fine.label, TranslateCap('armory_item', ESX.Math.GroupDigits(fine.amount))),
-				value     = fine.id,
-				amount    = fine.amount,
-				fineLabel = fine.label
-			}
+		while fineList[category] == nil do
+			Wait(50)
+		end	
+	end
+
+	local elements = {
+		{unselectable = true, icon = "fas fa-scroll", title = TranslateCap('fine')}
+	}
+
+	for k,fine in ipairs(fineList[category]) do
+		elements[#elements+1] = {
+			icon = "fas fa-scroll",
+			title     = ('%s <span style="color:green;">%s</span>'):format(fine.label, TranslateCap('armory_item', ESX.Math.GroupDigits(fine.amount))),
+			value     = fine.id,
+			amount    = fine.amount,
+			fineLabel = fine.label
+		}
+	end
+
+	ESX.OpenContext("right", elements, function(menu,element)
+		local data = {current = element}
+		if Config.EnablePlayerManagement then
+			TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(player), 'society_police', TranslateCap('fine_total', data.current.fineLabel), data.current.amount)
+		else
+			TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(player), '', TranslateCap('fine_total', data.current.fineLabel), data.current.amount)
 		end
 
-		ESX.OpenContext("right", elements, function(menu,element)
-			local data = {current = element}
-			if Config.EnablePlayerManagement then
-				TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(player), 'society_police', TranslateCap('fine_total', data.current.fineLabel), data.current.amount)
-			else
-				TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(player), '', TranslateCap('fine_total', data.current.fineLabel), data.current.amount)
-			end
-
-			ESX.SetTimeout(300, function()
-				OpenFineCategoryMenu(player, category)
-			end)
+		ESX.SetTimeout(300, function()
+			OpenFineCategoryMenu(player, category)
 		end)
-	end, category)
+	end)
 end
 
 function LookupVehicle(elementF)

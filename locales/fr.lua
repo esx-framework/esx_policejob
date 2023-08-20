@@ -1,5 +1,5 @@
 Locales['fr'] = {
-  -- Cloakroom
+  -- Vestiaire
   ['cloakroom'] = 'vestiaire',
   ['citizen_wear'] = 'tenue Civil',
   ['police_wear'] = 'tenue Policier',
@@ -7,7 +7,7 @@ Locales['fr'] = {
   ['bullet_wear'] = 'gilet pare-balles',
   ['no_outfit'] = 'il n\'y a pas d\'uniforme à votre taille...',
   ['open_cloackroom'] = 'appuyez sur [E] pour vous changer',
-  -- Armory
+  -- Armurerie
   ['remove_object'] = 'prendre Objet',
   ['deposit_object'] = 'déposer objet',
   ['get_weapon'] = 'prendre Arme',
@@ -25,8 +25,8 @@ Locales['fr'] = {
   ['armory_hascomponent'] = 'vous avez cet accessoire équipé!',
   ['get_weapon_menu'] = 'armurerie - Retirer arme',
   ['put_weapon_menu'] = 'armurerie - Stocker arme',
-  ['confirm'] = 'Confirm', --not translated
-  -- Vehicles
+  ['confirm'] = 'Confirmer',
+  -- Véhicules
   ['vehicle_menu'] = 'véhicule',
   ['vehicle_blocked'] = 'tous les points de spawn sont bloqués!',
   ['garage_prompt'] = 'appuyez sur [E] pour accéder aux Actions Véhicule.',
@@ -54,9 +54,9 @@ Locales['fr'] = {
   ['vehicleshop_awaiting_model'] = 'le véhicule est actuellement en PRÉPARATION veuillez patienter',
   ['confirm_no'] = 'non',
   ['confirm_yes'] = 'oui',
-  ['view'] = 'View', --not translated
-  ['buy_car'] = 'Buy', --not translated
-  ['stop_view'] = 'Stop Viewing', --not translated
+  ['view'] = 'Voir',
+  ['buy_car'] = 'Acheter',
+  ['stop_view'] = 'Arrêter de voir',
   -- Service
   ['service_max'] = 'vous ne pouvez pas entrer en service, officiers en service: %s/%s',
   ['service_not'] = 'vous n\'êtes pas en service! Vous devez d\'abord enfiler votre tenue.',
@@ -65,8 +65,8 @@ Locales['fr'] = {
   ['service_in_announce'] = 'l\'officier %s est entré en service!',
   ['service_out'] = 'vous avez terminé votre service.',
   ['service_out_announce'] = 'l\'officier %s a quitté son service.',
-  -- Action Menu
-  ['menu_title'] = 'Police', --not translated
+  -- Menu d'intéraction
+  ['menu_title'] = 'Police',
   ['citizen_interaction'] = 'interaction citoyen',
   ['vehicle_interaction'] = 'interaction véhicule',
   ['object_spawner'] = 'placer objets',
@@ -85,7 +85,7 @@ Locales['fr'] = {
   ['licence_you_revoked'] = 'vous avez révoqué un %s qui appartenait à %s',
   ['no_players_nearby'] = 'aucun joueur à proximité',
   ['being_searched'] = 'vous êtes recherché(e) par la Police',
-  -- Vehicle interaction
+  -- Intéraction véhicule
   ['vehicle_info'] = 'infos véhicule',
   ['pick_lock'] = 'crocheter véhicule',
   ['vehicle_unlocked'] = 'véhicule déverouillé',
@@ -98,16 +98,16 @@ Locales['fr'] = {
   ['search_database'] = 'information sur le véhicule',
   ['search_database_title'] = 'informations sur le véhicule - recherche avec numéro d\'enregistrement',
   ['search_database_error_invalid'] = 'Ce n\'est ~r~pas un numéro d\'enregistrement valide',
-  ['search_plate'] = 'Enter Plate', --not translated
-  ['lookup_plate'] = 'Lookup Plate', --not translated
-  -- Traffic interaction
+  ['search_plate'] = 'Entrer la plaque',
+  ['lookup_plate'] = 'Vérifier la plaque',
+  -- Interaction routière
   ['traffic_interaction'] = 'interaction routière',
   ['cone'] = 'plot',
   ['barrier'] = 'barrière',
   ['spikestrips'] = 'herse',
   ['box'] = 'caisse',
   ['cash'] = 'caisse',
-  -- ID Card Menu
+  -- Menu de carte ID
   ['name'] = 'nom: %s',
   ['job'] = 'métier: %s',
   ['sex'] = 'sexe: %s',
@@ -117,7 +117,7 @@ Locales['fr'] = {
   ['unknown'] = 'inconnu',
   ['male'] = 'homme',
   ['female'] = 'femme',
-  -- Body Search Menu
+  -- Menu de fouille de corps
   ['guns_label'] = '--- Armes ---',
   ['inventory_label'] = '--- Inventaire ---',
   ['license_label'] = ' --- Licenses ---',
@@ -136,7 +136,7 @@ Locales['fr'] = {
   ['average_offense'] = 'délit moyen',
   ['major_offense'] = 'délit grave',
   ['fine_total'] = 'amende: %s',
-  -- Vehicle Info Menu
+  -- Menu Info véhicule
   ['plate'] = 'n°: %s',
   ['owner_unknown'] = 'propriétaire: Inconnu',
   ['owner'] = 'propriétaire: %s',
@@ -146,7 +146,7 @@ Locales['fr'] = {
   ['have_withdrawn'] = 'vous avez retiré %sx %s',
   ['have_deposited'] = 'vous avez déposé %sx %s',
   ['quantity'] = 'quantité',
-  ['quantity_placeholder'] = 'Amount to withdraw..', --not translated
+  ['quantity_placeholder'] = 'Montant à retirer..',
   ['inventory'] = 'inventaire',
   ['police_stock'] = 'coffre de la police',
   -- Misc
@@ -157,12 +157,11 @@ Locales['fr'] = {
   ['alert_police'] = 'alerte police',
   ['phone_police'] = 'police',
   -- Keybind
-  ['interaction'] = 'Interact', --not translated
-  ['quick_actions'] = 'Quick Actions', --not translated
+  ['interaction'] = 'Interagir',
+  ['quick_actions'] = 'Actions rapides',
   -- Other
-  ['society_police'] = 'Police', --not translated
-  ['s_m_y_sheriff_01'] = 'Sheriff Ped', --not translated
-  ['s_m_y_cop_01'] = 'Police Ped', -- not translated
-  ['s_m_y_swat_01'] = 'SWAT Ped', --not translated
-  
+  ['society_police'] = 'Police',
+  ['s_m_y_sheriff_01'] = 'Ped de Shérif',
+  ['s_m_y_cop_01'] = 'Ped de Police',
+  ['s_m_y_swat_01'] = 'Ped de SWAT',
 }

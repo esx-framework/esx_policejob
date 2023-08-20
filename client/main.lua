@@ -523,15 +523,15 @@ end
 
 local fineList = {}
 function OpenFineCategoryMenu(player, category)
-	if not fineList[category] then
+if not fineList[category] then
+		local p = promise.new()
+
 		ESX.TriggerServerCallback('esx_policejob:getFineList', function(fines)
-			fineList[category] = fines
+			p:resolve(fines)
 		end, category)
 
-		while fineList[category] == nil do
-			Wait(50)
-		end	
-	end
+		fineList[category] = Citizen.Await(p)
+end
 
 	local elements = {
 		{unselectable = true, icon = "fas fa-scroll", title = TranslateCap('fine')}

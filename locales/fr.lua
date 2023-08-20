@@ -164,5 +164,4 @@ Locales['fr'] = {
   ['s_m_y_sheriff_01'] = 'Ped de Shérif',
   ['s_m_y_cop_01'] = 'Ped de Police',
   ['s_m_y_swat_01'] = 'Ped de SWAT',
-  
 }

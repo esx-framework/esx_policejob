@@ -197,11 +197,18 @@ ESX.RegisterServerCallback('esx_policejob:getOtherPlayerData', function(source, 
 	end
 end)
 
+local fineList = {}
 ESX.RegisterServerCallback('esx_policejob:getFineList', function(source, cb, category)
-	MySQL.query('SELECT * FROM fine_types WHERE category = ?', {category},
-	function(fines)
-		cb(fines)
-	end)
+	if not fineList[category] then
+		MySQL.query('SELECT * FROM fine_types WHERE category = ?', {category},
+		function(fines)
+			fineList[category] = fines
+
+			cb(fines)
+		end)
+	else
+		cb(fineList[category])
+	end
 end)
 
 ESX.RegisterServerCallback('esx_policejob:getVehicleInfos', function(source, cb, plate)

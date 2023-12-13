@@ -794,7 +794,7 @@ function OpenBuyWeaponsMenu()
 						ESX.ShowNotification(TranslateCap('armory_bought', data.current.weaponLabel, ESX.Math.GroupDigits(data.current.price)))
 					end
 
-					menu.close()
+					ESX.CloseContext()
 					OpenBuyWeaponsMenu()
 				else
 					ESX.ShowNotification(TranslateCap('armory_money'))
@@ -817,7 +817,7 @@ function OpenWeaponComponentShop(components, weaponName, parentShop)
 						ESX.ShowNotification(TranslateCap('armory_bought', data.current.componentLabel, ESX.Math.GroupDigits(data.current.price)))
 					end
 
-					menu.close()
+					ESX.CloseContext()
 					parentShop.close()
 					OpenBuyWeaponsMenu()
 				else
@@ -1419,7 +1419,7 @@ ESX.RegisterInput("police:interact", "(ESX PoliceJob) " .. TranslateCap('interac
 	elseif CurrentAction == 'menu_boss_actions' then
 		ESX.CloseContext()
 		TriggerEvent('esx_society:openBossMenu', 'police', function(data, menu)
-			menu.close()
+			ESX.CloseContext()
 
 			CurrentAction     = 'menu_boss_actions'
 			CurrentActionMsg  = TranslateCap('open_bossmenu')

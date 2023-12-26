@@ -85,6 +85,9 @@ Locales['it'] = {
   ['licence_you_revoked'] = 'hai revocato una %s che apparteneva a %s',
   ['no_players_nearby'] = 'non ci sono giocatori nelle vicinanze!',
   ['being_searched'] = 'stai venendo perquisito dalla Polizia',
+  ['fine_enter_amount'] = 'Enter the amount of the fine', --not translated
+  ['fine_enter_text'] = 'Enter the reason for the fine', --not translated
+  ['not_a_number'] = 'Error: Value was not a number', --not translated
   -- Interazione veicolo
   ['vehicle_info'] = 'informazioni sul veicolo',
   ['pick_lock'] = 'forza la serratura del veicolo',

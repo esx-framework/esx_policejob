@@ -85,6 +85,9 @@ Locales['de'] = {
   ['licence_you_revoked'] = 'Du entziehst eine ~b~%s~s~ welche zu ~y~%s~s~ gehörte.',
   ['no_players_nearby'] = 'Es sind keine Personen in der Nähe!',
   ['being_searched'] = 'Du wirst von der Polizei durchsucht!',
+  ['fine_enter_amount'] = 'Gebe den Betrag der Geldstrafe ein',
+  ['fine_enter_text'] = 'Gebe den Grund der Geldstrafe ein',
+  ['not_a_number'] = 'Fehler: Die Eingabe muss eine Zahl sein',
   -- Vehicle interaction
   ['vehicle_info'] = 'Fahrzeug Info',
   ['pick_lock'] = 'Fahrzeug Aufbrechen',

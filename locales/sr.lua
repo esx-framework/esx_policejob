@@ -129,6 +129,9 @@ Locales['sr'] = {
 		['average_offense'] = 'Prosečan prekršaj',
 		['major_offense'] = 'Veliki prekršaj',
 		['fine_total'] = 'kazna: %s',
+        ['fine_enter_amount'] = 'Enter the amount of the fine', --not translated
+        ['fine_enter_text'] = 'Enter the reason for the fine', --not translated
+        ['not_a_number'] = 'Error: Value was not a number', --not translated
 		-- Vehicle Info Menu
 		['plate'] = 'Tablice: %s',
 		['owner_unknown'] = 'Vlasnik: Nepoznat',

@@ -85,6 +85,9 @@ Locales['fi'] = {
   ['licence_you_revoked'] = 'sinä kumosit %s mikä kuului henkilölle %s',
   ['no_players_nearby'] = 'ei pelaajia lähettyvillä',
   ['being_searched'] = 'you are being searched by the Police',
+  ['fine_enter_amount'] = 'Enter the amount of the fine', --not translated
+  ['fine_enter_text'] = 'Enter the reason for the fine', --not translated
+  ['not_a_number'] = 'Error: Value was not a number', --not translated
   -- Vehicle interaction
   ['vehicle_info'] = 'ajoneuvon tiedot',
   ['pick_lock'] = 'tiirikoi ovet',

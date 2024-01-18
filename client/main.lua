@@ -404,6 +404,7 @@ function OpenPoliceActionsMenu()
 				local objectCoords = (coords + forward * 1.0)
 
 				ESX.Game.SpawnObject(data2.current.model, objectCoords, function(obj)
+					Wait(100)
 					SetEntityHeading(obj, GetEntityHeading(playerPed))
 					PlaceObjectOnGroundProperly(obj)
 				end)

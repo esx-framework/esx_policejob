@@ -20,8 +20,7 @@ Config.EnableCustomPeds           = false -- Enable custom peds in cloak room? S
 Config.EnableESXService           = false -- Enable esx service?
 Config.MaxInService               = -1 -- How many people can be in service at once? Set as -1 to have no limit
 
-Config.EnableFinePresets          = true -- Set to false to use a custom input fields for fines
-Config.EnableFineRemoval          = true -- Enable to let officers remove fines
+Config.EnableFinePresets          = false -- Set to false to use a custom input fields for fines
 
 Config.Locale = GetConvar('esx:locale', 'en')
 

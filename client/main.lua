@@ -579,8 +579,8 @@ function OpenFineTextInput(player)
         end
         if UpdateOnscreenKeyboard() ~= 2 then
             amount = tonumber(GetOnscreenKeyboardResult())
-            if amount == nil then
-                ESX.ShowNotification(TranslateCap('not_a_number'))
+            if amount == nil or amount <= 0 then
+                ESX.ShowNotification(TranslateCap('invalid_amount'))
                 return
             end
         end
@@ -673,18 +673,15 @@ function OpenUnpaidBillsMenu(player)
 	ESX.TriggerServerCallback('esx_billing:getTargetBills', function(bills)
 		for k,bill in ipairs(bills) do
 			elements[#elements+1] = {
-				unselectable = not Config.EnableFineRemoval,
+				unselectable = true,
 				icon = "fas fa-scroll",
 				title = ('%s - <span style="color:red;">%s</span>'):format(bill.label, TranslateCap('armory_item', ESX.Math.GroupDigits(bill.amount))),
 				billId = bill.id
 			}
 		end
 
-		ESX.OpenContext('right', elements, function(menu, bill)
-            TriggerServerEvent('esx_policejob:removeFine', bill.billId)
-            ESX.CloseContext()
-            OpenUnpaidBillsMenu(player)
-        end, nil)
+		ESX.OpenContext("right", elements, nil, nil)
+		
 	end, GetPlayerServerId(player))
 end
 

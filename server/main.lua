@@ -211,10 +211,6 @@ ESX.RegisterServerCallback('esx_policejob:getFineList', function(source, cb, cat
 	end
 end)
 
-RegisterNetEvent('esx_policejob:removeFine')
-AddEventHandler('esx_policejob:removeFine', function(id) 
-    MySQL.update('DELETE FROM billing WHERE id = ?', {id})
-end)
 
 ESX.RegisterServerCallback('esx_policejob:getVehicleInfos', function(source, cb, plate)
 	local retrivedInfo = {

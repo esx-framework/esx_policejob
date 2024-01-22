@@ -85,6 +85,9 @@ Locales['hu'] = {
   ['licence_you_revoked'] = 'visszavonta %s %s engedélyét',
   ['no_players_nearby'] = 'nincs a közeledben játékos!',
   ['being_searched'] = 'Téged éppen megmotoztak!',
+  ['fine_enter_amount'] = 'Írja be a bírság összegét',
+  ['fine_enter_text'] = 'Adja meg a bírság okát',
+  ['invalid_amount'] = 'Hiba: Az összeg nem szám vagy érvénytelen',
   -- Vehicle interaction
   ['vehicle_info'] = 'Jármü infó',
   ['pick_lock'] = 'Jármü feltörése',

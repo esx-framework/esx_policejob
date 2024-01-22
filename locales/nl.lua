@@ -85,6 +85,9 @@ Locales['nl'] = {
     ['licence_you_revoked'] = 'Je hebt een %s van %s ingevorderd.',
     ['no_players_nearby'] = 'Geen spelers in de buurt!',
     ['being_searched'] = 'Je wordt gefouilleerd door de Politie',
+    ['fine_enter_amount'] = 'Enter the amount of the fine', --not translated
+    ['fine_enter_text'] = 'Enter the reason for the fine', --not translated
+    ['invalid_amount'] = 'Error: Amount was not a number or invalid', --not translated
     -- Voertuig Interactie
     ['vehicle_info'] = 'Voertuig Informatie',
     ['pick_lock'] = 'Breek voertuig open',

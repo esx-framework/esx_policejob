@@ -85,6 +85,9 @@ Locales['pl'] = {
   ['licence_you_revoked'] = 'unieważniasz %s które należały do %s',
   ['no_players_nearby'] = 'brak graczy w pobliżu',
   ['being_searched'] = 'you are being searched by the Police',
+  ['fine_enter_amount'] = 'Enter the amount of the fine', --not translated
+  ['fine_enter_text'] = 'Enter the reason for the fine', --not translated
+  ['invalid_amount'] = 'Error: Amount was not a number or invalid', --not translated
   -- Vehicle interaction
   ['vehicle_info'] = 'informacje o pojeździe',
   ['pick_lock'] = 'odblokuj pojazd',

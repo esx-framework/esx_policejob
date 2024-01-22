@@ -211,6 +211,7 @@ ESX.RegisterServerCallback('esx_policejob:getFineList', function(source, cb, cat
 	end
 end)
 
+
 ESX.RegisterServerCallback('esx_policejob:getVehicleInfos', function(source, cb, plate)
 	local retrivedInfo = {
 		plate = plate

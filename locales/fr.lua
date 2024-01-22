@@ -87,7 +87,7 @@ Locales['fr'] = {
   ['being_searched'] = 'vous êtes recherché(e) par la Police',
   ['fine_enter_amount'] = 'Enter the amount of the fine', --not translated
   ['fine_enter_text'] = 'Enter the reason for the fine', --not translated
-  ['not_a_number'] = 'Error: Value was not a number', --not translated
+  ['invalid_amount'] = 'Error: Amount was not a number or invalid', --not translated
   -- Intéraction véhicule
   ['vehicle_info'] = 'infos véhicule',
   ['pick_lock'] = 'crocheter véhicule',

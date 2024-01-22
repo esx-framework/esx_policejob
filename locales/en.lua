@@ -138,7 +138,7 @@ Locales['en'] = {
   ['fine_total'] = 'fine: %s',
   ['fine_enter_amount'] = 'Enter the amount of the fine',
   ['fine_enter_text'] = 'Enter the reason for the fine',
-  ['not_a_number'] = 'Error: Value was not a number',
+  ['invalid_amount'] = 'Error: Amount was not a number or invalid',
   -- Vehicle Info Menu
   ['plate'] = 'plate: %s',
   ['owner_unknown'] = 'owner: Unknown',

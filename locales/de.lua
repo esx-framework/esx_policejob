@@ -87,7 +87,7 @@ Locales['de'] = {
   ['being_searched'] = 'Du wirst von der Polizei durchsucht!',
   ['fine_enter_amount'] = 'Gebe den Betrag der Geldstrafe ein',
   ['fine_enter_text'] = 'Gebe den Grund der Geldstrafe ein',
-  ['not_a_number'] = 'Fehler: Die Eingabe muss eine Zahl sein',
+  ['invalid_amount'] = 'Error: Amount was not a number or invalid', --not translated
   -- Vehicle interaction
   ['vehicle_info'] = 'Fahrzeug Info',
   ['pick_lock'] = 'Fahrzeug Aufbrechen',

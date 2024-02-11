@@ -2,7 +2,7 @@ fx_version 'adamant'
 
 game 'gta5'
 
-description 'ESX Police Job'
+description 'Allows Players to RP as Police Officers (cars, outfits, handcuffing etc)'
 lua54 'yes'
 version '1.0.2'
 legacyversion '1.9.1'

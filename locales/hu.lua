@@ -1,12 +1,12 @@
 Locales['hu'] = {
   -- Cloakroom
-  ['cloakroom'] = 'Zárt helyiség',
+  ['cloakroom'] = 'Öltöző',
   ['citizen_wear'] = 'Civil öltözet',
   ['police_wear'] = 'Egyenruha',
   ['gilet_wear'] = 'Láthatósági mellény',
   ['bullet_wear'] = 'Golyóálló mellény',
   ['no_outfit'] = 'Nincs hozzád illő egyenruha!',
-  ['open_cloackroom'] = 'Nyomj [E] betüt, hogy átöltözz.',
+  ['open_cloackroom'] = 'Nyomj [E] hogy hozzáférj: Öltöző.',
   -- Armory
   ['remove_object'] = 'Tárgy kivétele',
   ['deposit_object'] = 'Tárgy berakás',
@@ -44,7 +44,7 @@ Locales['hu'] = {
   ['garage_storeditem'] = 'garázs megnyitása',
   ['garage_storeitem'] = 'jármü tárolása a garázsban',
   ['garage_buyitem'] = 'Autó shop',
-  ['helicopter_prompt'] = 'Nyomj [E] betüt, hogy hozzáférj: Helicopter Actions.',
+  ['helicopter_prompt'] = 'Nyomj [E] betüt, hogy hozzáférj: Helikopter Garázs.',
   ['helicopter_notauthorized'] = 'Nem használhatsz helikoptert.',
   ['shop_item'] = '%s Ft',
   ['vehicleshop_title'] = 'Autó shop',
@@ -72,16 +72,16 @@ Locales['hu'] = {
   ['object_spawner'] = 'Objektum lerakása',
 
   ['id_card'] = 'Személyi igazolvány',
-  ['search'] = 'keresés',
-  ['handcuff'] = 'kötözés / elengedés',
-  ['drag'] = 'kisérés',
-  ['put_in_vehicle'] = 'berakás jármübe',
-  ['out_the_vehicle'] = 'kivétel jármüböl',
-  ['fine'] = 'birság',
+  ['search'] = 'Keresés',
+  ['handcuff'] = 'Kötözés / Elengedés',
+  ['drag'] = 'Kisérés',
+  ['put_in_vehicle'] = 'Berakás jármübe',
+  ['out_the_vehicle'] = 'Kivétel jármüböl',
+  ['fine'] = 'Birság',
   ['unpaid_bills'] = 'fizetetlen számlák kezelése',
   ['license_check'] = 'engedélyek kezelése',
   ['license_revoke'] = 'engedélyek visszavonása',
-  ['license_revoked'] = '%s  revoked!',
+  ['license_revoked'] = '%s  visszavonva!',
   ['licence_you_revoked'] = 'visszavonta %s %s engedélyét',
   ['no_players_nearby'] = 'nincs a közeledben játékos!',
   ['being_searched'] = 'Téged éppen megmotoztak!',
@@ -91,7 +91,7 @@ Locales['hu'] = {
   -- Vehicle interaction
   ['vehicle_info'] = 'Jármü infó',
   ['pick_lock'] = 'Jármü feltörése',
-  ['vehicle_unlocked'] = 'Jármü feltörve feltörve',
+  ['vehicle_unlocked'] = 'Jármü feltörve',
   ['no_vehicles_nearby'] = 'nincs jármü a közelben',
   ['impound'] = 'jármü lefoglalása',
   ['impound_prompt'] = 'Nyomj [E] hogy megszakítsd',
@@ -100,7 +100,7 @@ Locales['hu'] = {
   ['impound_successful'] = 'sikeres lefoglalás',
   ['search_database'] = 'Keresés rendszám alapján',
   ['search_database_title'] = 'jármü információk - keresés rendszám alapján',
-  ['search_database_error_invalid'] = 'ez ~r~nem egy érvényes rendszám',
+  ['search_database_error_invalid'] = 'ez ~r~ nem egy érvényes rendszám',
   ['search_plate'] = 'Enter Plate', --not translated
   ['lookup_plate'] = 'Lookup Plate', --not translated
   -- Traffic interaction
@@ -145,7 +145,7 @@ Locales['hu'] = {
   ['owner_unknown'] = 'tulajdonos: ismeretlen',
   ['owner'] = 'tulajdonos: %s',
   -- Boss Menu
-  ['open_bossmenu'] = 'Nyomj [E] gombot a menü eléréséhez',
+  ['open_bossmenu'] = 'Nyomj [E] betüt, hogy hozzáférj: Parancsnoki Menü',
   ['quantity_invalid'] = 'érvénytelen mennyiség',
   ['have_withdrawn'] = 'Kivetted %sx %s',
   ['have_deposited'] = 'Beraktad %sx %s',

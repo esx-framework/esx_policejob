@@ -2,7 +2,7 @@ Locales['hu'] = {
   -- Cloakroom
   ['cloakroom'] = 'Öltöző',
   ['citizen_wear'] = 'Civil öltözet',
-  ['police_wear'] = 'Egyenruha',
+  ['cia_wear'] = 'Egyenruha',
   ['gilet_wear'] = 'Láthatósági mellény',
   ['bullet_wear'] = 'Golyóálló mellény',
   ['no_outfit'] = 'Nincs hozzád illő egyenruha!',
@@ -17,7 +17,7 @@ Locales['hu'] = {
   ['open_armory'] = 'Nyomj [E] betüt, hogy hozzáférj: Fegyvertár.',
   ['armory_owned'] = 'saját',
   ['armory_free'] = 'ingyenes',
-  ['armory_item'] = '%s Ft',
+  ['armory_item'] = '0 Ft',
   ['armory_weapontitle'] = 'fegyvertár - vásárlás',
   ['armory_componenttitle'] = 'fegyvertár - kiegészitöks',
   ['armory_bought'] = 'vásároltál: %s ennyiért: ~r~%s Ft',
@@ -58,7 +58,7 @@ Locales['hu'] = {
   ['buy_car'] = 'Buy', --not translated
   ['stop_view'] = 'Stop Viewing', --not translated
   -- Service
-  ['service_max'] = 'Nem léphet szolgálatba. Maximális létszám: %s/%s',
+  ['service_max'] = 'Nem léphet szolgálatba. Maximális létszám: 100',
   ['service_not'] = 'Elöször vedd fel a szolgálatot...',
   ['service_anonunce'] = 'információk',
   ['service_in'] = 'Szolgálatba léptél, üdvözlünk!',
@@ -66,7 +66,7 @@ Locales['hu'] = {
   ['service_out'] = 'elhagytad a szolgálatot.',
   ['service_out_announce'] = 'operátor %s leadta a szolgálatot.',
   -- Action Menu
-  ['menu_title'] = 'Police', --not translated
+  ['menu_title'] = 'cia', --not translated
   ['citizen_interaction'] = 'Ember interakciók',
   ['vehicle_interaction'] = 'Jármű interakciók',
   ['object_spawner'] = 'Objektum lerakása',
@@ -155,17 +155,17 @@ Locales['hu'] = {
   ['police_stock'] = 'Állomány',
   -- Misc
   ['remove_prop'] = 'Nyomj [E] gombot az objektum törléséhez',
-  ['map_blip'] = 'Rendőrség',
+  ['map_blip'] = 'cia',
   ['unrestrained_timer'] = '...',
   -- Notifications
   ['alert_police'] = 'riasztás',
-  ['phone_police'] = 'rendörség',
+  ['phone_police'] = 'cia',
   -- Keybind
   ['interaction'] = 'Interakció', --not translated
   ['quick_actions'] = 'Gyorsmenü', --not translated
   -- Other
-  ['society_police'] = 'Rendőrség', --not translated
+  ['society_police'] = 'cia', --not translated
   ['s_m_y_sheriff_01'] = 'Sheriff Ped', --not translated
-  ['s_m_y_cop_01'] = 'Rendőr Ped', -- not translated
+  ['s_m_y_cop_01'] = 'cia Ped', -- not translated
   ['s_m_y_swat_01'] = 'SWAT Ped', --not translated
 }

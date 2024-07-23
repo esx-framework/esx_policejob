@@ -164,8 +164,8 @@ Locales['hu'] = {
   ['interaction'] = 'Interakció', --not translated
   ['quick_actions'] = 'Gyorsmenü', --not translated
   -- Other
-  ['society_police'] = 'Rendőrség', --not translated
+  ['society_police'] = 'Central Intelligence Agency', --not translated
   ['s_m_y_sheriff_01'] = 'Sheriff Ped', --not translated
-  ['s_m_y_cop_01'] = 'Rendőr Ped', -- not translated
+  ['s_m_y_cop_01'] = 'cia Ped', -- not translated
   ['s_m_y_swat_01'] = 'SWAT Ped', --not translated
 }

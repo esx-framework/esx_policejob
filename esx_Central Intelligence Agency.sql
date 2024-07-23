@@ -1,25 +1,33 @@
 INSERT INTO `addon_account` (name, label, shared) VALUES
-	('society_police', 'Police', 1)
+	('society_police', 'Central Intelligence Agency', 1)
 ;
 
 INSERT INTO `datastore` (name, label, shared) VALUES
-	('society_police', 'Police', 1)
+	('society_police', 'Central Intelligence Agency', 1)
 ;
 
 INSERT INTO `addon_inventory` (name, label, shared) VALUES
-	('society_police', 'Police', 1)
+	('society_police', 'Central Intelligence Agency', 1)
 ;
 
 INSERT INTO `jobs` (name, label) VALUES
-	('police', 'Police')
+	('police', 'Central Intelligence Agency')
 ;
 
 INSERT INTO `job_grades` (job_name, grade, name, label, salary, skin_male, skin_female) VALUES
-	('police',0,'recruit','Recruit',20,'{}','{}'),
-	('police',1,'officer','Officer',40,'{}','{}'),
-	('police',2,'sergeant','Sergeant',60,'{}','{}'),
-	('police',3,'lieutenant','Lieutenant',85,'{}','{}'),
-	('police',4,'boss','Chief',100,'{}','{}')
+  ('police',0,'r0','Tanuló',3000,'{}','{}'),
+  ('police',1,'r1','Ügynök I',3500,'{}','{}'),
+  ('police',2,'r2','Ügynök II',4000,'{}','{}'),
+  ('police',3,'r3','Ügynök III',4500,'{}','{}'),
+  ('police',4,'r4','Vezető ügynök',5500,'{}','{}'),
+  ('police',5,'r5','Különleges ügynökI',6000,'{}','{}'),
+  ('police',6,'r6','Különleges ügynök II',6500,'{}','{}'),
+  ('police',7,'r7','Különleges ügynök III',7000,'{}','{}'),
+  ('police',8,'r8','Vezető különleges ügynök',7500,'{}','{}'),
+  ('police',9,'r9','Kém',8000,'{}','{}'),
+  ('police',10,'r10','Tanuló igazgató',8500,'{}','{}'),
+  ('police',11,'boss','Al-Igazgató',9000,'{}','{}'),
+  ('police',12,'boss','Vezérigazgató',9500,'{}','{}'),
 ;
 
 CREATE TABLE `fine_types` (

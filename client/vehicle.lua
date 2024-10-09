@@ -16,95 +16,84 @@ function OpenVehicleSpawnerMenu(type, station, part, partNum)
 			local shopCoords = Config.PoliceStations[station][part][partNum].InsideShop
 			local authorizedVehicles = Config.AuthorizedVehicles[type][ESX.PlayerData.job.grade_name]
 
-			if authorizedVehicles then
-				if #authorizedVehicles > 0 then
-					for k,vehicle in ipairs(authorizedVehicles) do
-						if IsModelInCdimage(vehicle.model) then
-							local vehicleLabel = GetLabelText(GetDisplayNameFromVehicleModel(vehicle.model))
+			if not authorizedVehicles or #authorizedVehicles < 1 then
+				return ESX.ShowNotification(TranslateCap('garage_notauthorized'))
+			end 
 
-							shopElements[#shopElements+1] = {
-								icon = 'fas fa-car',
-								title = ('%s - <span style="color:green;">%s</span>'):format(vehicleLabel, TranslateCap('shop_item', ESX.Math.GroupDigits(vehicle.price))),
-								name  = vehicleLabel,
-								model = vehicle.model,
-								price = vehicle.price,
-								props = vehicle.props,
-								type  = type
-							}
-						end
-					end
+			for k, vehicle in ipairs(authorizedVehicles) do
+				if IsModelInCdimage(vehicle.model) then
+					local vehicleLabel = GetLabelText(GetDisplayNameFromVehicleModel(vehicle.model))
 
-					if #shopElements > 0 then
-						OpenShopMenu(shopElements, playerCoords, shopCoords)
-					else
-						ESX.ShowNotification(TranslateCap('garage_notauthorized'))
-					end
-				else
-					ESX.ShowNotification(TranslateCap('garage_notauthorized'))
+					shopElements[#shopElements+1] = {
+						icon = 'fas fa-car',
+						title = ('%s - <span style="color:green;">%s</span>'):format(vehicleLabel, TranslateCap('shop_item', ESX.Math.GroupDigits(vehicle.price))),
+						name  = vehicleLabel,
+						model = vehicle.model,
+						price = vehicle.price,
+						props = vehicle.props,
+						type  = type
+					}
 				end
-			else
-				ESX.ShowNotification(TranslateCap('garage_notauthorized'))
 			end
+
+			if #shopElements < 1 then return ESX.ShowNotification(TranslateCap('garage_notauthorized')) end 
+
+			OpenShopMenu(shopElements, playerCoords, shopCoords)
 		elseif element.action == "garage" then
 			local garage = {
 				{unselectable = true, icon = "fas fa-car", title = "Garage"}
 			}
 
 			ESX.TriggerServerCallback('esx_vehicleshop:retrieveJobVehicles', function(jobVehicles)
-				if #jobVehicles > 0 then
-					local allVehicleProps = {}
+				if #jobVehicles < 1 then return ESX.ShowNotification(TranslateCap('garage_empty')) end 
+				local allVehicleProps = {}
 
-					for k,v in ipairs(jobVehicles) do
-						local props = json.decode(v.vehicle)
+				for k,v in ipairs(jobVehicles) do
+					local props = json.decode(v.vehicle)
 
-						if IsModelInCdimage(props.model) then
-							local vehicleName = GetLabelText(GetDisplayNameFromVehicleModel(props.model))
-							local label = ('%s - <span style="color:darkgoldenrod;">%s</span>: '):format(vehicleName, props.plate)
+					if IsModelInCdimage(props.model) then
+						local vehicleName = GetLabelText(GetDisplayNameFromVehicleModel(props.model))
+						local label = ('%s - <span style="color:darkgoldenrod;">%s</span>: '):format(vehicleName, props.plate)
 
-							if v.stored == 1 or v.stored == true then
-								label = label .. ('<span style="color:green;">%s</span>'):format(TranslateCap('garage_stored'))
-							elseif v.stored == 0 or v.stored == false then
-								label = label .. ('<span style="color:darkred;">%s</span>'):format(TranslateCap('garage_notstored'))
-							end
-
-							garage[#garage+1] = {
-								icon = 'fas fa-car',
-								title = label,
-								stored = v.stored,
-								model = props.model,
-								plate = props.plate
-							}
-
-							allVehicleProps[props.plate] = props
+						if v.stored == 1 or v.stored == true then
+							label = label .. ('<span style="color:green;">%s</span>'):format(TranslateCap('garage_stored'))
+						elseif v.stored == 0 or v.stored == false then
+							label = label .. ('<span style="color:darkred;">%s</span>'):format(TranslateCap('garage_notstored'))
 						end
+
+						garage[#garage+1] = {
+							icon = 'fas fa-car',
+							title = label,
+							stored = v.stored,
+							model = props.model,
+							plate = props.plate
+						}
+
+						allVehicleProps[props.plate] = props
 					end
-
-					if #garage > 0 then
-						ESX.OpenContext("right", garage, function(menuG,elementG)
-							if elementG.stored == 1 or elementG.stored == true then
-								local foundSpawn, spawnPoint = GetAvailableVehicleSpawnPoint(station, part, partNum)
-
-								if foundSpawn then
-									ESX.CloseContext()
-
-									ESX.Game.SpawnVehicle(elementG.model, spawnPoint.coords, spawnPoint.heading, function(vehicle)
-										local vehicleProps = allVehicleProps[elementG.plate]
-										ESX.Game.SetVehicleProperties(vehicle, vehicleProps)
-
-										TriggerServerEvent('esx_vehicleshop:setJobVehicleState', elementG.plate, false)
-										ESX.ShowNotification(TranslateCap('garage_released'))
-									end)
-								end
-							else
-								ESX.ShowNotification(TranslateCap('garage_notavailable'))
-							end
-						end)
-					else
-						ESX.ShowNotification(TranslateCap('garage_empty'))
-					end
-				else
-					ESX.ShowNotification(TranslateCap('garage_empty'))
 				end
+
+				if #garage < 1 then return ESX.ShowNotification(TranslateCap('garage_empty')) end 
+				
+				ESX.OpenContext("right", garage, function(menuG,elementG)
+					if elementG.stored == 1 or elementG.stored == true then
+						local foundSpawn, spawnPoint = GetAvailableVehicleSpawnPoint(station, part, partNum)
+
+						if foundSpawn then
+							ESX.CloseContext()
+
+							ESX.Game.SpawnVehicle(elementG.model, spawnPoint.coords, spawnPoint.heading, function(vehicle)
+								local vehicleProps = allVehicleProps[elementG.plate]
+								ESX.Game.SetVehicleProperties(vehicle, vehicleProps)
+
+								TriggerServerEvent('esx_vehicleshop:setJobVehicleState', elementG.plate, false)
+								ESX.ShowNotification(TranslateCap('garage_released'))
+							end)
+						end
+					else
+						ESX.ShowNotification(TranslateCap('garage_notavailable'))
+					end
+				end)
 			end, type)
 		elseif element.action == "store_garage" then
 			StoreNearbyVehicle(playerCoords)
@@ -115,68 +104,61 @@ end
 function StoreNearbyVehicle(playerCoords)
 	local vehicles, plates, index = ESX.Game.GetVehiclesInArea(playerCoords, 30.0), {}, {}
 
-	if next(vehicles) then
-		for i = 1, #vehicles do
-			local vehicle = vehicles[i]
+	if not next(vehicles) then return ESX.ShowNotification(TranslateCap('garage_store_nearby')) end 
+	for i = 1, #vehicles do
+		local vehicle = vehicles[i]
 			
-			-- Make sure the vehicle we're saving is empty, or else it won't be deleted
-			if GetVehicleNumberOfPassengers(vehicle) == 0 and IsVehicleSeatFree(vehicle, -1) then
-				local plate = ESX.Math.Trim(GetVehicleNumberPlateText(vehicle))
-				plates[#plates + 1] = plate
-				index[plate] = vehicle
-			end
+		-- Make sure the vehicle we're saving is empty, or else it won't be deleted
+		if GetVehicleNumberOfPassengers(vehicle) == 0 and IsVehicleSeatFree(vehicle, -1) then
+			local plate = ESX.Math.Trim(GetVehicleNumberPlateText(vehicle))
+			plates[#plates + 1] = plate
+			index[plate] = vehicle
 		end
-	else
-		ESX.ShowNotification(TranslateCap('garage_store_nearby'))
-		return
 	end
 
 	ESX.TriggerServerCallback('esx_policejob:storeNearbyVehicle', function(plate)
-		if plate then
-			local vehicleId = index[plate]
-			local attempts = 0
-			ESX.Game.DeleteVehicle(vehicleId)
-			local isBusy = true
+		if not plate then return ESX.ShowNotification(TranslateCap('garage_has_notstored')) end 
+		local vehicleId = index[plate]
+		local attempts = 0
+		ESX.Game.DeleteVehicle(vehicleId)
+		local isBusy = true
 
-			CreateThread(function()
-				BeginTextCommandBusyspinnerOn('STRING')
-				AddTextComponentSubstringPlayerName(TranslateCap('garage_storing'))
-				EndTextCommandBusyspinnerOn(4)
+		CreateThread(function()
+			BeginTextCommandBusyspinnerOn('STRING')
+			AddTextComponentSubstringPlayerName(TranslateCap('garage_storing'))
+			EndTextCommandBusyspinnerOn(4)
 
-				while isBusy do
-					Wait(100)
-				end
+			while isBusy do
+				Wait(100)
+			end
 
-				BusyspinnerOff()
-			end)
+			BusyspinnerOff()
+		end)
 
-			-- Workaround for vehicle not deleting when other players are near it.
-			while DoesEntityExist(vehicleId) do
-				Wait(500)
-				attempts = attempts + 1
+		-- Workaround for vehicle not deleting when other players are near it.
+		while DoesEntityExist(vehicleId) do
+			Wait(500)
+			attempts = attempts + 1
 
-				-- Give up
-				if attempts > 30 then
-					break
-				end
+			-- Give up
+			if attempts > 30 then
+				break
+			end
 
-				vehicles = ESX.Game.GetVehiclesInArea(playerCoords, 30.0)
-				if #vehicles > 0 then
-					for i = 1, #vehicles do
-						local vehicle = vehicles[i]
-						if ESX.Math.Trim(GetVehicleNumberPlateText(vehicle)) == plate then
-							ESX.Game.DeleteVehicle(vehicle)
-							break
-						end
+			vehicles = ESX.Game.GetVehiclesInArea(playerCoords, 30.0)
+			if #vehicles > 0 then
+				for i = 1, #vehicles do
+					local vehicle = vehicles[i]
+					if ESX.Math.Trim(GetVehicleNumberPlateText(vehicle)) == plate then
+						ESX.Game.DeleteVehicle(vehicle)
+						break
 					end
 				end
 			end
-
-			isBusy = false
-			ESX.ShowNotification(TranslateCap('garage_has_stored'))
-		else
-			ESX.ShowNotification(TranslateCap('garage_has_notstored'))
 		end
+
+		isBusy = false
+		ESX.ShowNotification(TranslateCap('garage_has_stored'))
 	end, plates)
 end
 

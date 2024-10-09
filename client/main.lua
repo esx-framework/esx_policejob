@@ -1,4 +1,4 @@
-local CurrentActionData, handcuffTimer, dragStatus, blipsCops, currentTask = {}, {}, {}, {}, {}
+local CurrentActionData, handcuffTimer, dragStatus, currentTask = {}, {}, {}, {}
 local HasAlreadyEnteredMarker, isDead, isHandcuffed, hasAlreadyJoined, playerInService = false, false, false, false, false
 local LastStation, LastPart, LastPartNum, LastEntity, CurrentAction, CurrentActionMsg
 dragStatus.isDragged, isInShopMenu = false, false
@@ -103,7 +103,6 @@ function OpenCloakroomMenu()
 						TriggerServerEvent('esx_service:notifyAllInService', notification, 'police')
 
 						TriggerServerEvent('esx_service:disableService', 'police')
-						TriggerEvent('esx_policejob:updateBlip')
 						ESX.ShowNotification(TranslateCap('service_out'))
 					end
 				end, 'police')
@@ -132,7 +131,6 @@ function OpenCloakroomMenu()
 								}
 
 								TriggerServerEvent('esx_service:notifyAllInService', notification, 'police')
-								TriggerEvent('esx_policejob:updateBlip')
 								ESX.ShowNotification(TranslateCap('service_in'))
 							end
 						end, 'police')
@@ -148,7 +146,6 @@ function OpenCloakroomMenu()
 						}
 
 						TriggerServerEvent('esx_service:notifyAllInService', notification, 'police')
-						TriggerEvent('esx_policejob:updateBlip')
 						ESX.ShowNotification(TranslateCap('service_in'))
 					end
 
@@ -946,14 +943,6 @@ function OpenPutStocksMenu()
 	end)
 end
 
-function OnPlayerData(k, v)
-	if k ~= 'job' then return end
-	if v.name == 'police' then
-		Wait(1000)
-		TriggerServerEvent('esx_policejob:forceBlip')
-	end
-end
-
 RegisterNetEvent('esx_phone:loaded')
 AddEventHandler('esx_phone:loaded', function(phoneNumber, contacts)
 	local specialContact = {
@@ -1036,35 +1025,11 @@ AddEventHandler('esx_policejob:hasExitedEntityZone', function(entity)
 	end
 end)
 
-RegisterNetEvent('esx_policejob:handcuff')
-AddEventHandler('esx_policejob:handcuff', function()
+RegisterNetEvent('esx_policejob:handcuff', function()
 	isHandcuffed = not isHandcuffed
 	local playerPed = PlayerPedId()
 
-	if isHandcuffed then
-		RequestAnimDict('mp_arresting')
-		while not HasAnimDictLoaded('mp_arresting') do
-			Wait(100)
-		end
-
-		TaskPlayAnim(playerPed, 'mp_arresting', 'idle', 8.0, -8, -1, 49, 0, 0, 0, 0)
-		RemoveAnimDict('mp_arresting')
-
-		SetEnableHandcuffs(playerPed, true)
-		DisablePlayerFiring(playerPed, true)
-		SetCurrentPedWeapon(playerPed, `WEAPON_UNARMED`, true) -- unarm player
-		SetPedCanPlayGestureAnims(playerPed, false)
-		FreezeEntityPosition(playerPed, true)
-		DisplayRadar(false)
-
-		if Config.EnableHandcuffTimer then
-			if handcuffTimer.active then
-				ESX.ClearTimeout(handcuffTimer.task)
-			end
-
-			StartHandcuffTimer()
-		end
-	else
+	if not isHandcuffed then 
 		if Config.EnableHandcuffTimer and handcuffTimer.active then
 			ESX.ClearTimeout(handcuffTimer.task)
 		end
@@ -1075,35 +1040,55 @@ AddEventHandler('esx_policejob:handcuff', function()
 		SetPedCanPlayGestureAnims(playerPed, true)
 		FreezeEntityPosition(playerPed, false)
 		DisplayRadar(true)
+		return 
+	end 
+
+	RequestAnimDict('mp_arresting')
+	while not HasAnimDictLoaded('mp_arresting') do
+		Wait(100)
 	end
-end)
 
-RegisterNetEvent('esx_policejob:unrestrain')
-AddEventHandler('esx_policejob:unrestrain', function()
-	if isHandcuffed then
-		local playerPed = PlayerPedId()
-		isHandcuffed = false
+	TaskPlayAnim(playerPed, 'mp_arresting', 'idle', 8.0, -8, -1, 49, 0, 0, 0, 0)
+	RemoveAnimDict('mp_arresting')
 
-		ClearPedSecondaryTask(playerPed)
-		SetEnableHandcuffs(playerPed, false)
-		DisablePlayerFiring(playerPed, false)
-		SetPedCanPlayGestureAnims(playerPed, true)
-		FreezeEntityPosition(playerPed, false)
-		DisplayRadar(true)
+	SetEnableHandcuffs(playerPed, true)
+	DisablePlayerFiring(playerPed, true)
+	SetCurrentPedWeapon(playerPed, `WEAPON_UNARMED`, true) -- unarm player
+	SetPedCanPlayGestureAnims(playerPed, false)
+	FreezeEntityPosition(playerPed, true)
+	DisplayRadar(false)
 
-		-- end timer
-		if Config.EnableHandcuffTimer and handcuffTimer.active then
+	if Config.EnableHandcuffTimer then
+		if handcuffTimer.active then
 			ESX.ClearTimeout(handcuffTimer.task)
 		end
+
+		StartHandcuffTimer()
 	end
 end)
 
-RegisterNetEvent('esx_policejob:drag')
-AddEventHandler('esx_policejob:drag', function(copId)
-	if isHandcuffed then
-		dragStatus.isDragged = not dragStatus.isDragged
-		dragStatus.CopId = copId
+RegisterNetEvent('esx_policejob:unrestrain', function()
+	if not isHandcuffed then return end 
+	local playerPed = PlayerPedId()
+	isHandcuffed = false
+
+	ClearPedSecondaryTask(playerPed)
+	SetEnableHandcuffs(playerPed, false)
+	DisablePlayerFiring(playerPed, false)
+	SetPedCanPlayGestureAnims(playerPed, true)
+	FreezeEntityPosition(playerPed, false)
+	DisplayRadar(true)
+
+	-- end timer
+	if Config.EnableHandcuffTimer and handcuffTimer.active then
+		ESX.ClearTimeout(handcuffTimer.task)
 	end
+end)
+
+RegisterNetEvent('esx_policejob:drag', function(copId)
+	if not isHandcuffed then return end
+	dragStatus.isDragged = not dragStatus.isDragged
+	dragStatus.CopId = copId
 end)
 
 CreateThread(function()
@@ -1136,39 +1121,36 @@ CreateThread(function()
 	end
 end)
 
-RegisterNetEvent('esx_policejob:putInVehicle')
-AddEventHandler('esx_policejob:putInVehicle', function()
-	if isHandcuffed then
-		local playerPed = PlayerPedId()
-		local vehicle, distance = ESX.Game.GetClosestVehicle()
+RegisterNetEvent('esx_policejob:putInVehicle', function()
+	if not isHandcuffed then return end
+	local playerPed = PlayerPedId()
+	local vehicle, distance = ESX.Game.GetClosestVehicle()
 
-		if vehicle and distance < 5 then
-			local maxSeats, freeSeat = GetVehicleMaxNumberOfPassengers(vehicle)
+	if vehicle and distance < 5 then
+		local maxSeats, freeSeat = GetVehicleMaxNumberOfPassengers(vehicle)
 
-			for i=maxSeats - 1, 0, -1 do
-				if IsVehicleSeatFree(vehicle, i) then
-					freeSeat = i
-					break
-				end
+		for i=maxSeats - 1, 0, -1 do
+			if IsVehicleSeatFree(vehicle, i) then
+				freeSeat = i
+				break
 			end
+		end
 
-			if freeSeat then
-				TaskWarpPedIntoVehicle(playerPed, vehicle, freeSeat)
-				dragStatus.isDragged = false
-			end
+		if freeSeat then
+			TaskWarpPedIntoVehicle(playerPed, vehicle, freeSeat)
+			dragStatus.isDragged = false
 		end
 	end
 end)
 
-RegisterNetEvent('esx_policejob:OutVehicle')
-AddEventHandler('esx_policejob:OutVehicle', function()
+RegisterNetEvent('esx_policejob:OutVehicle', function()
 	local GetVehiclePedIsIn = GetVehiclePedIsIn
 	local IsPedSittingInAnyVehicle = IsPedSittingInAnyVehicle
 	local TaskLeaveVehicle = TaskLeaveVehicle
-	if IsPedSittingInAnyVehicle(ESX.PlayerData.ped) then
-		local vehicle = GetVehiclePedIsIn(ESX.PlayerData.ped, false)
-		TaskLeaveVehicle(ESX.PlayerData.ped, vehicle, 64)
-	end
+	if not IsPedSittingInAnyVehicle(ESX.PlayerData.ped) then return end
+
+	local vehicle = GetVehiclePedIsIn(ESX.PlayerData.ped, false)
+	TaskLeaveVehicle(ESX.PlayerData.ped, vehicle, 64)
 end)
 
 -- Handcuff
@@ -1482,62 +1464,8 @@ CreateThread(function()
 			Sleep = 0
 			ESX.ShowHelpNotification(CurrentActionMsg)
 		end
-	Wait(Sleep)
+		Wait(Sleep)
 	end
-end)
-
--- Create blip for colleagues
-function createBlip(id)
-	local ped = GetPlayerPed(id)
-	local blip = GetBlipFromEntity(ped)
-
-	if not DoesBlipExist(blip) then -- Add blip and create head display on player
-		blip = AddBlipForEntity(ped)
-		SetBlipSprite(blip, 1)
-		ShowHeadingIndicatorOnBlip(blip, true) -- Player Blip indicator
-		SetBlipRotation(blip, math.ceil(GetEntityHeading(ped))) -- update rotation
-		SetBlipNameToPlayerName(blip, id) -- update blip name
-		SetBlipScale(blip, 0.85) -- set scale
-		SetBlipAsShortRange(blip, true)
-
-		table.insert(blipsCops, blip) -- add blip to array so we can remove it later
-	end
-end
-
-RegisterNetEvent('esx_policejob:updateBlip')
-AddEventHandler('esx_policejob:updateBlip', function()
-
-	-- Refresh all blips
-	for k, existingBlip in pairs(blipsCops) do
-		RemoveBlip(existingBlip)
-	end
-
-	-- Clean the blip table
-	blipsCops = {}
-
-	-- Enable blip?
-	if Config.EnableESXService and not playerInService then
-		return
-	end
-
-	if not Config.EnableJobBlip then
-		return
-	end
-
-	-- Is the player a cop? In that case show all the blips for other cops
-	if ESX.PlayerData.job and ESX.PlayerData.job.name == 'police' then
-		ESX.TriggerServerCallback('esx_society:getOnlinePlayers', function(players)
-			for i=1, #players, 1 do
-				if players[i].job.name == 'police' then
-					local id = GetPlayerFromServerId(players[i].source)
-					if NetworkIsPlayerActive(id) and GetPlayerPed(id) ~= PlayerPedId() then
-						createBlip(id)
-					end
-				end
-			end
-		end)
-	end
-
 end)
 
 AddEventHandler('esx:onPlayerSpawn', function(spawn)
@@ -1592,10 +1520,4 @@ function ImpoundVehicle(vehicle)
 	ESX.Game.DeleteVehicle(vehicle)
 	ESX.ShowNotification(TranslateCap('impound_successful'))
 	currentTask.busy = false
-end
-
-if ESX.PlayerLoaded and ESX.PlayerData.job == 'police' then
-	SetTimeout(1000, function()
-		TriggerServerEvent('esx_policejob:forceBlip')
-	end)
 end

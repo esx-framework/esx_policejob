@@ -103,7 +103,6 @@ function OpenCloakroomMenu()
 						TriggerServerEvent('esx_service:notifyAllInService', notification, 'police')
 
 						TriggerServerEvent('esx_service:disableService', 'police')
-						TriggerEvent('esx_policejob:updateBlip')
 						ESX.ShowNotification(TranslateCap('service_out'))
 					end
 				end, 'police')
@@ -132,7 +131,6 @@ function OpenCloakroomMenu()
 								}
 
 								TriggerServerEvent('esx_service:notifyAllInService', notification, 'police')
-								TriggerEvent('esx_policejob:updateBlip')
 								ESX.ShowNotification(TranslateCap('service_in'))
 							end
 						end, 'police')
@@ -148,7 +146,6 @@ function OpenCloakroomMenu()
 						}
 
 						TriggerServerEvent('esx_service:notifyAllInService', notification, 'police')
-						TriggerEvent('esx_policejob:updateBlip')
 						ESX.ShowNotification(TranslateCap('service_in'))
 					end
 
@@ -946,14 +943,6 @@ function OpenPutStocksMenu()
 	end)
 end
 
-function OnPlayerData(k, v)
-	if k ~= 'job' then return end
-	if v.name == 'police' then
-		Wait(1000)
-		TriggerServerEvent('esx_policejob:forceBlip')
-	end
-end
-
 RegisterNetEvent('esx_phone:loaded')
 AddEventHandler('esx_phone:loaded', function(phoneNumber, contacts)
 	local specialContact = {
@@ -1504,42 +1493,6 @@ function createBlip(id)
 	end
 end
 
-RegisterNetEvent('esx_policejob:updateBlip')
-AddEventHandler('esx_policejob:updateBlip', function()
-
-	-- Refresh all blips
-	for k, existingBlip in pairs(blipsCops) do
-		RemoveBlip(existingBlip)
-	end
-
-	-- Clean the blip table
-	blipsCops = {}
-
-	-- Enable blip?
-	if Config.EnableESXService and not playerInService then
-		return
-	end
-
-	if not Config.EnableJobBlip then
-		return
-	end
-
-	-- Is the player a cop? In that case show all the blips for other cops
-	if ESX.PlayerData.job and ESX.PlayerData.job.name == 'police' then
-		ESX.TriggerServerCallback('esx_society:getOnlinePlayers', function(players)
-			for i=1, #players, 1 do
-				if players[i].job.name == 'police' then
-					local id = GetPlayerFromServerId(players[i].source)
-					if NetworkIsPlayerActive(id) and GetPlayerPed(id) ~= PlayerPedId() then
-						createBlip(id)
-					end
-				end
-			end
-		end)
-	end
-
-end)
-
 AddEventHandler('esx:onPlayerSpawn', function(spawn)
 	isDead = false
 	TriggerEvent('esx_policejob:unrestrain')
@@ -1592,10 +1545,4 @@ function ImpoundVehicle(vehicle)
 	ESX.Game.DeleteVehicle(vehicle)
 	ESX.ShowNotification(TranslateCap('impound_successful'))
 	currentTask.busy = false
-end
-
-if ESX.PlayerLoaded and ESX.PlayerData.job == 'police' then
-	SetTimeout(1000, function()
-		TriggerServerEvent('esx_policejob:forceBlip')
-	end)
 end
